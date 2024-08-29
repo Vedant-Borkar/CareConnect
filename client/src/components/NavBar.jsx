@@ -7,6 +7,7 @@ const routes = [
   { name: "Home", path: "home", isExternal: false },
   { name: "Features", path: "feature", isExternal: false },
   { name: "Event", path: "event-section", isExternal: false },
+  { name: "Dashboard", path: "/dashboard", isExternal: true },
   { name: "Testimonials", path: "testimonial", isExternal: false },
   { name: "Profile", path: "/profile", isExternal: true },
   { name: "Sign Up", path: "/sign-up", isExternal: true },

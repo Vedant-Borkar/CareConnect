@@ -10,6 +10,7 @@ import UserProfile from "./Pages/UserProfile";
 import NgoProfile from "./Pages/Ngo_Profile";
 import SignUp from "./Pages/SignUp";
 import EventsPage from "./Pages/EventsPage";
+import Dashboard from "./Pages/Dashboard";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           {/* <Route path="/userlogin" element={<UserLogin />} />
           <Route path="/userregister" element={<UserRegister />} /> */}
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>
