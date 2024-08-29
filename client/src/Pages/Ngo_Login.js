@@ -33,22 +33,27 @@ const NgoLogin = () => {
       );
       const user = userCredential.user;
 
-      // Fetch additional NGO data from Firestore
+      // Fetch additional NGO data from Firestore using the user's UID
       const ngoQuery = query(
         collection(db, "ngos"),
-        where("email", "==", email)
+        where("userId", "==", user.uid)
       );
       const ngoSnapshot = await getDocs(ngoQuery);
 
       if (!ngoSnapshot.empty) {
+        let ngoData = {};
         ngoSnapshot.forEach((doc) => {
-          console.log("NGO data:", doc.data());
-          // Here you can set NGO data in your state or context if needed
+          ngoData = { ...doc.data(), id: doc.id }; // Add ID for potential updates
         });
 
+        console.log("NGO data:", ngoData);
+
+        // Store NGO data in session storage or context
+        sessionStorage.setItem("ngoData", JSON.stringify(ngoData));
+
         console.log("User logged in successfully!");
-        // Navigate to a protected route or dashboard
-        navigate("/home");
+        // Navigate to the profile page
+        navigate("/ngo-profile");
       } else {
         console.log("No NGO found with this email!");
         setError("No NGO found with this email!");
