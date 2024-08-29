@@ -10,7 +10,10 @@ import UserProfile from "./Pages/UserProfile";
 import NgoProfile from "./Pages/Ngo_Profile";
 import SignUp from "./Pages/SignUp";
 import EventsPage from "./Pages/EventsPage";
+<<<<<<< HEAD
 
+=======
+>>>>>>> ec411ef56f33019d7b702409f017ae0ab2331fec
 const App = () => {
   return (
     <Router>
