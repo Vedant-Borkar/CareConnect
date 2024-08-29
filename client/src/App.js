@@ -10,10 +10,9 @@ import UserProfile from "./Pages/UserProfile";
 import NgoProfile from "./Pages/Ngo_Profile";
 import SignUp from "./Pages/SignUp";
 import EventsPage from "./Pages/EventsPage";
-<<<<<<< HEAD
+import Donations from "./Pages/Donations";
 
-=======
->>>>>>> ec411ef56f33019d7b702409f017ae0ab2331fec
+
 const App = () => {
   return (
     <Router>
@@ -32,6 +31,10 @@ const App = () => {
           {/* <Route path="/userlogin" element={<UserLogin />} />
           <Route path="/userregister" element={<UserRegister />} /> */}
           <Route path="/events" element={<EventsPage />} />
+          {/* <Route path="/donations" element={<Donations/>} />
+          <Route path="/course" element={<Course />} />
+                    <Route path="payment" element={<StripePayment />} />
+                    <Route path="success" element={<PaymentSuccess />} /> */}
         </Routes>
       </div>
     </Router>
