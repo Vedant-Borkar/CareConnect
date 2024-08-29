@@ -10,25 +10,15 @@ import Ngo_Register from "./Pages/Ngo_Register";
 import Ngo_Login from "./Pages/Ngo_Login";
 import Profile from "./Pages/Profile";
 import ProfileSettings from "./Pages/ProfileSettings";
-import Ngo_Profile from "./Pages/Ngo_Profile";
 import UserProfile from "./Pages/UserProfile";
+import NgoProfile from "./Pages/Ngo_Profile";
+import UserLogin from "./Pages/User_Login";
+import UserRegister from "./Pages/User_Register";
 
 const App = () => {
   return (
     <Router>
       <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/event" element={<Event />} />
-        <Route path="/testimonial" element={<Testimonial />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/ngo_register" element={<Ngo_Register />} />
-        <Route path="/ngo_login" element={<Ngo_Login />} />
-      </Routes>
-      <div className="pt-16">
-        {" "}
-        {/* Add padding to account for fixed navbar */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/event" element={<Event />} />
@@ -38,8 +28,11 @@ const App = () => {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/ngo_register" element={<Ngo_Register />} />
           <Route path="/ngo_login" element={<Ngo_Login />} />
+          <Route path="/ngo-profile" element={<NgoProfile />} />
+          <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/userlogin" element={<UserLogin />} />
+          <Route path="/userregister" element={<UserRegister />} />
         </Routes>
-      </div>
     </Router>
   );
 };
