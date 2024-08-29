@@ -90,8 +90,8 @@ function Home() {
       </section>
 
       {/* Events Section */}
-      <section className="flex items-center justify-center min-h-screen bg-black text-white px-4">
-        <div className="text-center mb-12 flex items-center justify-center flex-column">
+      <section className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4">
+        <div className="text-center mb-12 flex items-center justify-center flex-col">
           <h2 className="text-3xl font-bold mb-4">Upcoming Events</h2>
           <p className="text-lg max-w-2xl mx-auto">
             Discover our exciting upcoming events that you don't want to miss. Join us for engaging activities and memorable experiences.
