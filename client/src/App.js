@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import NavBar from "./components/NavBar"; // Adjust the import path if necessary
-
-// Import the components for each route
+import NavBar from "./components/NavBar";
 import Home from "./Pages/Home";
 import Event from "./components/Event";
 import Testimonial from "./Pages/Testimonial";
@@ -26,6 +24,19 @@ const App = () => {
         <Route path="/ngo_login" element={<Ngo_Login />} />
         <Route path="/ngo-profile" element={<Ngo_Profile />} />
       </Routes>
+      <div className="pt-16">
+        {" "}
+        {/* Add padding to account for fixed navbar */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/event" element={<Event />} />
+          <Route path="/testimonial" element={<Testimonial />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/ngo_register" element={<Ngo_Register />} />
+          <Route path="/ngo_login" element={<Ngo_Login />} />
+        </Routes>
+      </div>
     </Router>
   );
 };
