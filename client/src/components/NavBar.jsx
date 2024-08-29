@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './navbar.css';
 
 const routes = [
-  { name: 'Home', path: '/home' },
+  { name: 'Home', path: '/' },
   { name: 'Event', path: '/event' },
   { name: 'Testimonials', path: '/sign-up' },
   { name: 'Sign Up', path: '/sign-up' },
