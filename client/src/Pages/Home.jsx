@@ -69,11 +69,11 @@ function Home() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-2 text-center">
-                Awarded Agency
+                Collaborated Events
               </h3>
               <p className="text-center">
-                Divide details about your product or agency work into parts. A
-                paragraph describing a feature will be enough.
+               
+To foster meaningful connections between younger and older generations, promoting mutual respect, understanding, and joy
               </p>
             </div>
             <div className="bg-gray-100 p-6 rounded-lg shadow-md">
@@ -94,11 +94,10 @@ function Home() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-2 text-center">
-                Free Revisions
+                Want to be a vounteer?
               </h3>
               <p className="text-center">
-                Keep your user engaged by providing meaningful information.
-                Remember that by this time, the user is curious.
+                Donate or help us in conducting events for these non profit organizations and gain good blessings
               </p>
             </div>
             <div className="bg-gray-100 p-6 rounded-lg shadow-md">
@@ -122,8 +121,7 @@ function Home() {
                 Verified Company
               </h3>
               <p className="text-center">
-                Write a few lines about each one. A paragraph describing a
-                feature will be enough. Keep your user engaged!
+                You can trust us with your donations since the  NGO's registered with us are 100% verified
               </p>
             </div>
           </div>
