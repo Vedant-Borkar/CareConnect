@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./FireBaseAuth";
-import { useNavigate } from "react-router-dom"; // Importing db from FireBaseAuth
+import { useNavigate, Link } from "react-router-dom"; // Importing db from FireBaseAuth
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
@@ -97,6 +97,12 @@ const UserProfile = () => {
                 <p className="text-gray-600">
                   <strong>Location:</strong> {event.location}
                 </p>
+                <Link
+                  to={`/chat/${event.chatRoomId}`}
+                  className="text-blue-500 underline hover:text-blue-700"
+                >
+                  Join Chat Room
+                </Link>
               </li>
             ))}
           </ol>

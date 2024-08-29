@@ -1,27 +1,29 @@
+import React, { useEffect, useState } from "react";
 import EventCard from "../components/EventCard";
 import { Link } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "./FireBaseAuth"; // Ensure this path is correct
 
 const EventsDisplay = () => {
-  const events = [
-    {
-      title: "Event 1",
-      description:
-        "Description of Event 1 goes here. Provide details about the event, date, time, and location.",
-      tags: ["Blood Sucker"],
-    },
-    {
-      title: "Event 2",
-      description:
-        "Description of Event 2 goes here. Provide details about the event, date, time, and location.",
-      tags: ["Donation"],
-    },
-    {
-      title: "Event 3",
-      description:
-        "Description of Event 3 goes here. Provide details about the event, date, time, and location.",
-      tags: ["Fundraiser"],
-    },
-  ];
+  const [events, setEvents] = useState([]); // State to store events
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const eventsCollection = collection(db, "events"); // Reference to the 'events' collection
+        const eventsSnapshot = await getDocs(eventsCollection); // Fetch all documents in the collection
+        const eventsList = eventsSnapshot.docs.map((doc) => ({
+          id: doc.id, // Include the document ID
+          ...doc.data(), // Spread the document data
+        }));
+        setEvents(eventsList); // Update the state with the fetched events
+      } catch (error) {
+        console.error("Error fetching events:", error.message);
+      }
+    };
+
+    fetchEvents(); // Fetch events on component mount
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center w-full py-12 bg-black text-white">
@@ -33,12 +35,13 @@ const EventsDisplay = () => {
         </p>
       </div>
       <div className="text-black grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
-        {events.map((event, index) => (
+        {events.map((event) => (
           <EventCard
-            key={index}
+            key={event.id} // Use the document ID as the key
             title={event.title}
             description={event.description}
             tags={event.tags}
+            ngoId={event.ngoId} // Include ngoId to fetch the NGO details
           />
         ))}
       </div>

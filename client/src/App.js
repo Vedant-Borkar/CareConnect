@@ -11,6 +11,8 @@ import NgoProfile from "./Pages/Ngo_Profile";
 import SignUp from "./Pages/SignUp";
 import EventsPage from "./Pages/EventsPage";
 import Donations from "./Pages/Donations";
+import ChatRoom from "./Pages/ChatRoom";
+import User_Profile from "./Pages/User_Profile";
 
 const App = () => {
   return (
@@ -34,6 +36,8 @@ const App = () => {
           <Route path="/course" element={<Course />} />
                     <Route path="payment" element={<StripePayment />} />
                     <Route path="success" element={<PaymentSuccess />} /> */}
+          <Route path="/user-profile" element={<User_Profile />} />
+          <Route path="/chat/:roomId" element={<ChatRoom />} />
         </Routes>
       </div>
     </Router>
