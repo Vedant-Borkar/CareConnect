@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
-import { auth, db } from "./NGOBaseAuth";
+import { auth, db } from "./NGOBaseAuth"; // Importing auth1 and db1 from UserBaseAuth
 
-const NgoLogin = () => {
+const UserLogin = () => {
   const [formData, setFormData] = useState({
-    ngoName: "",
-    ngoId: "",
-    ngoLicense: "",
+    username: "",
     email: "",
-    contactNo: "",
-    address: "",
+    mobileNumber: "",
+    city: "",
+    pincode: "",
     password: "",
   });
 
-  const { ngoName, ngoId, ngoLicense, email, contactNo, address, password } =
-    formData;
+  const { username, email, mobileNumber, city, pincode, password } = formData;
 
   const handleChange = (e) => {
     setFormData({
@@ -36,55 +34,34 @@ const NgoLogin = () => {
       );
       const user = userCredential.user;
 
-      // Add additional NGO data to Firestore
-      await addDoc(collection(db, "ngos"), {
-        ngoName,
-        ngoId,
-        ngoLicense,
+      // Add additional User data to Firestore in the "users" collection
+      await addDoc(collection(db, "users"), {
+        username,
         email,
-        contactNo,
-        address,
-        userId: user.uid,
+        mobileNumber,
+        city,
+        pincode,
+        userId: user.uid,  // Storing the Firebase UID for reference
       });
 
-      console.log("NGO registered successfully!");
+      console.log("User registered successfully!");
       // Redirect or display success message
     } catch (error) {
-      console.error("Error registering NGO:", error.message);
+      console.error("Error registering user:", error.message);
       // Handle errors here, e.g., display error messages
     }
   };
 
   return (
     <div>
-      <h2>NGO Login</h2>
+      <h2>User Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="ngoName">NGO Name:</label>
+          <label htmlFor="username">Username:</label>
           <input
             type="text"
-            name="ngoName"
-            value={ngoName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="ngoId">NGO ID:</label>
-          <input
-            type="text"
-            name="ngoId"
-            value={ngoId}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="ngoLicense">NGO License:</label>
-          <input
-            type="text"
-            name="ngoLicense"
-            value={ngoLicense}
+            name="username"
+            value={username}
             onChange={handleChange}
             required
           />
@@ -100,20 +77,31 @@ const NgoLogin = () => {
           />
         </div>
         <div>
-          <label htmlFor="contactNo">Contact No.:</label>
+          <label htmlFor="mobileNumber">Mobile Number:</label>
           <input
             type="text"
-            name="contactNo"
-            value={contactNo}
+            name="mobileNumber"
+            value={mobileNumber}
             onChange={handleChange}
             required
           />
         </div>
         <div>
-          <label htmlFor="address">Address:</label>
-          <textarea
-            name="address"
-            value={address}
+          <label htmlFor="city">City:</label>
+          <input
+            type="text"
+            name="city"
+            value={city}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="pincode">Pincode:</label>
+          <input
+            type="text"
+            name="pincode"
+            value={pincode}
             onChange={handleChange}
             required
           />
@@ -134,4 +122,4 @@ const NgoLogin = () => {
   );
 };
 
-export default NgoLogin;
+export default UserLogin;
