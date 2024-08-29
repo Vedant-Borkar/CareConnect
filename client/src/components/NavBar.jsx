@@ -47,6 +47,11 @@ const NavBar = () => {
     setIsMenuOpen(false);
   };
 
+  const handleLogout = () => {
+    sessionStorage.clear();
+    navigate("/sign-in");
+  };
+
   return (
     <header className="bg-gray-100 shadow-md fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
@@ -77,6 +82,12 @@ const NavBar = () => {
               {route.name}
             </button>
           ))}
+          <button
+            onClick={handleLogout}
+            className="text-lg text-gray-700 hover:text-blue-500 transition-colors duration-300 mx-2"
+          >
+            Logout
+          </button>
         </nav>
 
         {/* Add your menu toggle button here */}
