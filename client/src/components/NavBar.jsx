@@ -11,6 +11,12 @@ const routes = [
   { name: "Profile", path: "/profile", isExternal: true },
   { name: "Sign Up", path: "/sign-up", isExternal: true },
   { name: "Sign In", path: "/sign-in", isExternal: true },
+  { name: "Ngo Register", path: "/ngo_register", isExternal: true },
+  { name: "Ngo login", path: "/ngo_login", isExternal: true },
+  { name: "Ngo Profile", path: "/ngo-profile", isExternal: true },
+  { name: "User login", path: "/userlogin", isExternal: true },
+  { name: "User register", path: "/userregister", isExternal: true },
+  { name: "User Profile", path: "/userprofile", isExternal: true },
 ];
 
 const NavBar = () => {
