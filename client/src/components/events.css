@@ -1,0 +1,147 @@
+/* EventForm.css */
+/* Event.css */
+* {
+    
+}
+.event-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8) ;
+    border-radius: 8px;
+  }
+  
+  .progress-tracker {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .step {
+    padding: 10px;
+    width: 30%;
+    text-align: center;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    margin-right: 20px;
+  }
+  
+  .step.active {
+    background-color: black;
+    color: white;
+  }
+  
+  .form-section {
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  /* Event.css */
+.form-section input,
+.form-section textarea,
+.form-section select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-section input:focus,
+.form-section textarea:focus,
+.form-section select:focus {
+  border-color: #00AD8A;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 173, 138, 0.5);
+}
+
+.event-form {
+    width: 100%;
+    max-width: 500px;
+    margin-top:50px !important;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin:auto;
+    align-items: center;
+  }
+  
+  .event-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  
+  .form-section {
+    margin-bottom: 20px;
+  }
+  
+  .form-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .form-section input[type="date"],
+  .form-section input[type="time"],
+  .form-section input[type="number"],
+  .form-section input[type="url"],
+  .form-section select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .form-section input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-buttons button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .form-buttons button[type="button"] {
+    background-color: #6c757d;
+  }
+  
+  .form-buttons button:hover {
+    opacity: 0.9;
+  }
+  /* Universal placeholder styling */
+::placeholder {
+    font-family: inherit !important; /* Ensures the placeholder uses the same font as the input */
+    font-size: inherit; /* Ensures the placeholder uses the same font size as the input */
+    color: #999; /* Placeholder text color */
+    opacity: 1; /* Ensures consistent opacity across browsers */
+  }
+  
+  /* Specific input field if needed */
+  input::placeholder, 
+  textarea::placeholder, 
+  select::placeholder {
+    font-family: inherit !important;
+    font-size: inherit;
+    color: #999;
+  }

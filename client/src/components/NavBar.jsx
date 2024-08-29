@@ -1,35 +1,51 @@
-import React from 'react'
-import "./navbar.css"
+import React, { useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import './navbar.css';
+
+const routes = [
+  { name: 'Home', path: '/home' },
+  { name: 'Event', path: '/event' },
+  { name: 'Testimonials', path: '/sign-up' },
+  { name: 'Sign Up', path: '/sign-up' },
+  { name: 'Sign In', path: '/sign-in' },
+];
 
 const NavBar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <>
-    <header className="nav-bar-section">
-      <div className="nav-bar">
-        <div className="logo-container">
-          <img src="/ARTEZ.png" alt="logo" />
+    <header className="bg-gray-100 shadow-md">
+      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+        <div className="text-2xl font-bold text-gray-800">
+          CareConnect
         </div>
 
-        <nav className="nav-links">
-          <div id="nav-close" className="fa-solid fa-xmark"></div>
-          <a className="link-color" href="/index.html">Home</a>
-          <a className="link-color" href="/events.html">Events</a>
-          <a className="link-color" href="/contact.html">Contact</a>
-
-          <a
-            ><i
-              onClick="changeHeaderTheme()"
-              className="fa-solid fa-paint-roller"
-              style={{color: "#203f20", cursor: "pointer"}}
-            ></i>
-          </a>
+        <nav className={`md:flex md:items-center ${isMenuOpen ? 'block' : 'hidden'}`}>
+          <FaTimes className="md:hidden text-2xl cursor-pointer mb-4" onClick={toggleMenu} />
+          {routes.map((route) => (
+            <Link
+              key={route.name}
+              to={route.path}
+              className="text-lg text-gray-700 hover:text-blue-500 transition-colors duration-300 mx-2"
+              onClick={toggleMenu}
+            >
+              {route.name}
+            </Link>
+          ))}
         </nav>
-        <div id="menubtn" class="fa-solid fa-bars"></div>
+
+        <FaBars
+          className="text-2xl text-gray-800 cursor-pointer md:hidden"
+          onClick={toggleMenu}
+        />
       </div>
     </header>
-    
-    </>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
