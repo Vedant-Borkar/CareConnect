@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NgoLogin from "./Pages/Ngo_Login";
+import Home from "./Pages/Home";
 
 const App = () => {
   return (
