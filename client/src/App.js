@@ -26,12 +26,12 @@ const App = () => {
           <Route path="/profile" element={<ProfileSettings />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/ngo_register" element={<Ngo_Register />} />
-          <Route path="/ngo_login" element={<Ngo_Login />} />
+          {/* <Route path="/ngo_register" element={<Ngo_Register />} />
+          <Route path="/ngo_login" element={<Ngo_Login />} /> */}
           <Route path="/ngo-profile" element={<NgoProfile />} />
           <Route path="/userprofile" element={<UserProfile />} />
-          <Route path="/userlogin" element={<UserLogin />} />
-          <Route path="/userregister" element={<UserRegister />} />
+          {/* <Route path="/userlogin" element={<UserLogin />} />
+          <Route path="/userregister" element={<UserRegister />} /> */}
         </Routes>
     </Router>
   );
