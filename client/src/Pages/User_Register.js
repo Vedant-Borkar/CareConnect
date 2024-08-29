@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { auth, db } from "./NGOBaseAuth"; // Importing auth1 and db1 from UserBaseAuth
 
-const UserLogin = () => {
+const UserRegister = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -122,4 +122,4 @@ const UserLogin = () => {
   );
 };
 
-export default UserLogin;
+export default UserRegister;

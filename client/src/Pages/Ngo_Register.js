@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { auth, db } from "./NGOBaseAuth";
 
-const NgoLogin = () => {
+const NgoRegister = () => {
   const [formData, setFormData] = useState({
     ngoName: "",
     ngoId: "",
@@ -134,4 +134,4 @@ const NgoLogin = () => {
   );
 };
 
-export default NgoLogin;
+export default NgoRegister ;
