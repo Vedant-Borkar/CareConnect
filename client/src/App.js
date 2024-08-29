@@ -10,6 +10,7 @@ import UserProfile from "./Pages/UserProfile";
 import NgoProfile from "./Pages/Ngo_Profile";
 import SignUp from "./Pages/SignUp";
 import EventsPage from "./Pages/EventsPage";
+import Donations from "./Pages/Donations";
 
 const App = () => {
   return (
@@ -29,6 +30,10 @@ const App = () => {
           {/* <Route path="/userlogin" element={<UserLogin />} />
           <Route path="/userregister" element={<UserRegister />} /> */}
           <Route path="/events" element={<EventsPage />} />
+          {/* <Route path="/donations" element={<Donations/>} />
+          <Route path="/course" element={<Course />} />
+                    <Route path="payment" element={<StripePayment />} />
+                    <Route path="success" element={<PaymentSuccess />} /> */}
         </Routes>
       </div>
     </Router>

@@ -44,7 +44,7 @@ const EventsDisplay = () => {
       </div>
       <div className="text-center mt-8">
         <Link to="/events">
-          <button className="px-6 py-2 bg-white text-black font-semibold rounded hover:scale-105 hover:border-2 hover:border-grey hover:shadow-lg">
+          <button className="px-6 py-2 bg-white text-black font-semibold rounded hover:scale-105 hover:border-2 hover:border-blue-600 hover:shadow-lg">
             View More
           </button>
         </Link>
