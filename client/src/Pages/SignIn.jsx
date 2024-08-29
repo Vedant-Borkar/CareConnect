@@ -1,69 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import UserLogin from "./User_Login";
+import NgoLogin from "./Ngo_Login";
 
-const SignIn = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here, e.g., send data to server
-    console.log('Form submitted:', formData);
-  };
+const LoginSwitcher = () => {
+  const [isNgoLogin, setIsNgoLogin] = useState(false); // State to toggle between User and NGO login
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className="text-2xl font-bold text-center mb-8">Sign In</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              required
-            />
-          </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              required
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Sign In
-            </button>
-          </div>
-        </form>
+        <div className="flex justify-center mb-8">
+          <button
+            onClick={() => setIsNgoLogin(false)}
+            className={`mr-4 py-2 px-4 ${
+              !isNgoLogin
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            } rounded focus:outline-none`}
+          >
+            User Login
+          </button>
+          <button
+            onClick={() => setIsNgoLogin(true)}
+            className={`py-2 px-4 ${
+              isNgoLogin
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            } rounded focus:outline-none`}
+          >
+            NGO Login
+          </button>
+        </div>
+        {isNgoLogin ? <NgoLogin /> : <UserLogin />}
       </div>
     </div>
   );
 };
 
-export default SignIn;
+export default LoginSwitcher;

@@ -3,7 +3,10 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { auth, db } from "./FireBaseAuth";
 
+import { useNavigate } from "react-router-dom";
+
 const NgoRegister = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     ngoName: "",
     ngoId: "",
@@ -48,6 +51,7 @@ const NgoRegister = () => {
       });
 
       console.log("NGO registered successfully!");
+      navigate("/ngo_login");
       // Redirect or display success message
     } catch (error) {
       console.error("Error registering NGO:", error.message);
