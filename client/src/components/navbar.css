@@ -1,3 +1,18 @@
+/* Add this to your navbar.css */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure the navbar stays on top of other elements */
+}
+
+/* Add padding to the top of the body to prevent content from being hidden under the fixed navbar */
+body {
+  padding-top: 64px; /* Adjust this value based on the height of your navbar */
+}
+
+
 .nav-bar-section {
   background-color: #f8f9fa;
   padding: 10px 20px;

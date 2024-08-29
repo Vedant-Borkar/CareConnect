@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import './navbar.css';
 
 const routes = [
-  { name: 'Home', path: '/' },
-  { name: 'Event', path: '/event' },
-  { name: 'Testimonials', path: '/sign-up' },
+  { name: 'Home', path: '#home' },
+  { name: 'Features', path: '#feature' },
+  { name: 'Event', path: '#event-section' },
+  { name: 'Testimonials', path: '#testimonial' },
   { name: 'Sign Up', path: '/sign-up' },
   { name: 'Sign In', path: '/sign-in' },
 ];
@@ -28,14 +30,25 @@ const NavBar = () => {
         <nav className={`md:flex md:items-center ${isMenuOpen ? 'block' : 'hidden'}`}>
           <FaTimes className="md:hidden text-2xl cursor-pointer mb-4" onClick={toggleMenu} />
           {routes.map((route) => (
-            <Link
-              key={route.name}
-              to={route.path}
-              className="text-lg text-gray-700 hover:text-blue-500 transition-colors duration-300 mx-2"
-              onClick={toggleMenu}
-            >
-              {route.name}
-            </Link>
+            route.path.startsWith('#') ? (
+              <HashLink
+                key={route.name}
+                to={route.path}
+                className="text-lg text-gray-700 hover:text-blue-500 transition-colors duration-300 mx-2"
+                onClick={toggleMenu}
+              >
+                {route.name}
+              </HashLink>
+            ) : (
+              <Link
+                key={route.name}
+                to={route.path}
+                className="text-lg text-gray-700 hover:text-blue-500 transition-colors duration-300 mx-2"
+                onClick={toggleMenu}
+              >
+                {route.name}
+              </Link>
+            )
           ))}
         </nav>
 
