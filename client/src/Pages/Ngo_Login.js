@@ -21,8 +21,15 @@ const NgoLogin = () => {
     });
   };
 
+  const handleSignIn = () => {
+    localStorage.setItem("isSignedIn", "true");
+    navigate("/ngodashboard"); // Redirect to the NGO dashboard
+    window.location.reload(); // Reload the page to update the NavBar
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // Reset error
 
     try {
       // First, try to sign in using Firebase Authentication
@@ -52,9 +59,9 @@ const NgoLogin = () => {
         sessionStorage.setItem("ngoData", JSON.stringify(ngoData));
 
         console.log("User logged in successfully!");
-        // Navigate to the profile page
-        navigate("/ngo-profile");
-        // sessionStorage.clear("userData");
+        
+        // Call the handleSignIn function
+        handleSignIn();
       } else {
         console.log("No NGO found with this email!");
         setError("No NGO found with this email!");
@@ -108,7 +115,7 @@ const NgoLogin = () => {
               type="submit"
               className="mr-2 py-2 px-5 rounded-full font-semibold transition-all duration-300 transform bg-black text-white shadow-lg scale-105"
             >
-              Register
+              Login
             </button>
           </div>
         </form>

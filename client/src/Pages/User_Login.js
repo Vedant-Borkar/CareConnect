@@ -27,11 +27,7 @@ const UserLogin = () => {
 
     try {
       // Sign in user with email and password
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
       // Fetch additional user data from Firestore
@@ -48,9 +44,12 @@ const UserLogin = () => {
         // Store user data in session storage
         sessionStorage.setItem("userData", JSON.stringify(userData));
 
-        // Redirect to home page
-        // sessionStorage.clear("ngoData");
-        navigate("/userprofile");
+        // Set sign-in status in localStorage
+        localStorage.setItem("isSignedIn", "true");
+
+        // Redirect to user dashboard
+        navigate("/userdashboard");
+        window.location.reload(); // Reload to update the NavBar
       } else {
         console.log("User document not found in Firestore");
         setError("User not found. Please check your credentials.");
@@ -104,7 +103,7 @@ const UserLogin = () => {
               type="submit"
               className="mr-2 py-2 px-5 rounded-full font-semibold transition-all duration-300 transform bg-black text-white shadow-lg scale-105"
             >
-              Register
+              Login
             </button>
           </div>
         </form>
