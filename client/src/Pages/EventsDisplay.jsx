@@ -1,5 +1,5 @@
-import React from "react";
 import EventCard from "../components/EventCard";
+import { Link } from "react-router-dom";
 
 const EventsDisplay = () => {
   const events = [
@@ -24,8 +24,8 @@ const EventsDisplay = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center w-full py-12 bg-gray-100">
-      <div className="text-black text-center mb-12 flex items-center justify-center flex-col">
+    <div className="flex flex-col items-center justify-center w-full py-12 bg-black text-white">
+      <div className="text-center mb-12 flex items-center justify-center flex-col">
         <h2 className="text-3xl font-bold mb-4">Upcoming Events</h2>
         <p className="text-lg max-w-2xl mx-auto">
           Discover our exciting upcoming events that you don't want to miss.
@@ -43,9 +43,11 @@ const EventsDisplay = () => {
         ))}
       </div>
       <div className="text-center mt-8">
-        <button className="px-6 py-2 bg-black text-white font-semibold rounded hover:scale-105 hover:border-2 hover:border-black hover:shadow-lg">
-          View More
-        </button>
+        <Link to="/events">
+          <button className="px-6 py-2 bg-white text-black font-semibold rounded hover:scale-105 hover:border-2 hover:border-grey hover:shadow-lg">
+            View More
+          </button>
+        </Link>
       </div>
     </div>
   );
