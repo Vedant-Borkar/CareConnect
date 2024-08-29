@@ -54,6 +54,7 @@ const NgoLogin = () => {
         console.log("User logged in successfully!");
         // Navigate to the profile page
         navigate("/ngo-profile");
+        // sessionStorage.clear("userData");
       } else {
         console.log("No NGO found with this email!");
         setError("No NGO found with this email!");
@@ -103,13 +104,13 @@ const NgoLogin = () => {
           </div>
           {error && <p className="text-red-500 text-xs italic">{error}</p>}
           <div className="flex justify-center">
-  <button
-    type="submit"
-    className="mr-2 py-2 px-5 rounded-full font-semibold transition-all duration-300 transform bg-black text-white shadow-lg scale-105"
-  >
-    Register
-  </button>
-</div>
+            <button
+              type="submit"
+              className="mr-2 py-2 px-5 rounded-full font-semibold transition-all duration-300 transform bg-black text-white shadow-lg scale-105"
+            >
+              Register
+            </button>
+          </div>
         </form>
       </div>
     </div>

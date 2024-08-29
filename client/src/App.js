@@ -5,15 +5,10 @@ import Home from "./Pages/Home";
 import Event from "./components/Event";
 import Testimonial from "./Pages/Testimonial";
 import SignIn from "./Pages/SignIn";
-import SignUp from "./Pages/SignUp";
-import Ngo_Register from "./Pages/Ngo_Register";
-import Ngo_Login from "./Pages/Ngo_Login";
-import Profile from "./Pages/Profile";
 import ProfileSettings from "./Pages/ProfileSettings";
 import UserProfile from "./Pages/UserProfile";
 import NgoProfile from "./Pages/Ngo_Profile";
-import UserLogin from "./Pages/User_Login";
-import UserRegister from "./Pages/User_Register";
+import SignUp from "./Pages/SignUp";
 
 const App = () => {
   return (
@@ -32,8 +27,9 @@ const App = () => {
           <Route path="/userprofile" element={<UserProfile />} />
           {/* <Route path="/userlogin" element={<UserLogin />} />
           <Route path="/userregister" element={<UserRegister />} /> */}
+          <Route path="/events" element={<EventPage />} />
         </Routes>
-        </div>
+      </div>
     </Router>
   );
 };
