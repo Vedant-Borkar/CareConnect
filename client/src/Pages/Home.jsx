@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Element } from "react-scroll";
 import { useLocation, useNavigate } from "react-router-dom";
+import EventsDisplay from './EventsDisplay';  // Adjust the import path as needed
 
 function Home() {
   const location = useLocation();
@@ -42,7 +43,6 @@ function Home() {
           </div>
         </section>
       </Element>
-
 
       <Element name="feature" className="element">
         <section
@@ -129,75 +129,84 @@ function Home() {
           </div>
         </section>
       </Element>
-
-      <Element name="event-section" className="element">
+      {/* events section */}
+      {/* <Element name="event-section" className="element">
         <section
           id="event-section"
           className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4"
         >
           <div className="text-center mb-12 flex items-center justify-center flex-col">
-          <h2 className="text-3xl font-bold mb-4">Upcoming Events</h2>
-          <p className="text-lg max-w-2xl mx-auto">
-            Discover our exciting upcoming events that you don't want to miss.
-             Join us for engaging activities and memorable experiences.
-           </p>
-         </div>
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
-           <div className="bg-gray-700 p-6 rounded-lg shadow-md">
-             <h3 className="text-xl font-semibold mb-2">Event 1</h3>
-             <p>
-               Description of Event 1 goes here. Provide details about the event,
-               date, time, and location.
-             </p>
-           </div>
-           <div className="bg-gray-700 p-6 rounded-lg shadow-md">
-             <h3 className="text-xl font-semibold mb-2">Event 2</h3>
-             <p>
-               Description of Event 2 goes here. Provide details about the event,
-               date, time, and location.
-             </p>
-           </div>
-           <div className="bg-gray-700 p-6 rounded-lg shadow-md">
-             <h3 className="text-xl font-semibold mb-2">Event 3</h3>
-             <p>
-               Description of Event 3 goes here. Provide details about the event,
-               date, time, and location.
-             </p>
-           </div>
-         </div>
+            <h2 className="text-3xl font-bold mb-4">Upcoming Events</h2>
+            <p className="text-lg max-w-2xl mx-auto">
+              Discover our exciting upcoming events that you don't want to miss.
+              Join us for engaging activities and memorable experiences.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
+            <div className="bg-gray-700 p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-2">Event 1</h3>
+              <p>
+                Description of Event 1 goes here. Provide details about the
+                event, date, time, and location.
+              </p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-2">Event 2</h3>
+              <p>
+                Description of Event 2 goes here. Provide details about the
+                event, date, time, and location.
+              </p>
+            </div>
+            <div className="bg-gray-700 p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-2">Event 3</h3>
+              <p>
+                Description of Event 3 goes here. Provide details about the
+                event, date, time, and location.
+              </p>
+            </div>
+          </div>
+        </section>
+      </Element> */}
+      <Element name="event-section" className="element">
+        <section
+          id="event-section"
+          className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4"
+        >
+          <EventsDisplay />
         </section>
       </Element>
-
       <Element name="testimonial" className="element">
         <section
           id="testimonial"
           className="flex flex-col items-center justify-center min-h-screen bg-white text-black px-4"
         >
           <div className="flex flex-col justify-center text-center mb-12">
-           <h2 className="text-3xl font-bold mb-4">What Our Clients Say</h2>
-           <p className="text-lg max-w-2xl mx-auto">
-             Read testimonials from our satisfied clients who have experienced
-             the benefits of our services.
-           </p>
-         </div>
-         <div className="flex flex-row flex-wrap justify-center gap-6 max-w-6xl">
-           <div className="bg-gray-200 p-6 rounded-lg shadow-md max-w-md">
-             <p className="mb-4">
-               "Amazing service! The team was highly professional and delivered
-               beyond expectations."
-             </p>
-             <p className="font-semibold">John Doe</p>
-             <p className="text-gray-600">CEO, Example Company</p>
-           </div>
-           <div className="bg-gray-200 p-6 rounded-lg shadow-md max-w-md">
-             <p className="mb-4">
-               "Highly recommended! The results were outstanding and the support
-               was exceptional."
-             </p>
-             <p className="font-semibold">Jane Smith</p>
-             <p className="text-gray-600">Marketing Director, Another Company</p>
-           </div>
-         </div>
+            <h2 className="text-3xl font-bold mb-4">What Our Clients Say</h2>
+            <p className="text-lg max-w-2xl mx-auto">
+              Read testimonials from our satisfied clients who have experienced
+              the benefits of our services.
+            </p>
+          </div>
+          <div className="flex flex-row flex-wrap justify-center gap-6 max-w-6xl">
+            <div className="bg-gray-200 p-6 rounded-lg shadow-md max-w-md">
+              <p className="mb-4">
+                "Amazing service! The team was highly professional and delivered
+                beyond expectations."
+              </p>
+              <p className="font-semibold">John Doe</p>
+              <p className="text-gray-600">CEO, Example Company</p>
+            </div>
+            <div className="bg-gray-200 p-6 rounded-lg shadow-md max-w-md">
+              <p className="mb-4">
+                "Highly recommended! The results were outstanding and the
+                support was exceptional."
+              </p>
+              <p className="font-semibold">Jane Smith</p>
+              <p className="text-gray-600">
+                Marketing Director, Another Company
+              </p>
+            </div>
+          </div>
         </section>
       </Element>
     </div>
