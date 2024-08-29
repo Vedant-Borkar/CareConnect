@@ -6,7 +6,7 @@ function Home() {
       {/* Hero Section */}
       <section
         id="home"
-        className="flex items-start justify-center min-h-screen bg-black text-white px-4 bg-cover bg-center bg-no-repeat"
+        className="flex items-center justify-center min-h-screen bg-black text-white px-4 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('./img3.jpg')" }}
       >
         <div className="text-center">
