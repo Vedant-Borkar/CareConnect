@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "./FireBaseAuth"; // Ensure this path is correct
-
 import Event from "../components/Event";
+
 const NgoProfile = () => {
   const [ngoData, setNgoData] = useState(null);
-  const [eventData, setEventData] = useState({
-    title: "",
-    description: "",
-    date: "",
-    location: "",
-  });
-
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -22,16 +15,7 @@ const NgoProfile = () => {
     }
   }, []);
 
-  const handleEventChange = (e) => {
-    setEventData({
-      ...eventData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleEventSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleEventSubmit = async (eventData) => {
     try {
       // Add the event to Firestore under the 'events' collection
       await addDoc(collection(db, "events"), {
@@ -40,13 +24,6 @@ const NgoProfile = () => {
       });
 
       setMessage("Event created successfully!");
-      // Clear form fields after submission
-      setEventData({
-        title: "",
-        description: "",
-        date: "",
-        location: "",
-      });
     } catch (error) {
       console.error("Error creating event:", error.message);
       setMessage("Failed to create event. Please try again.");
@@ -87,7 +64,9 @@ const NgoProfile = () => {
         </div>
       </div>
 
-      <Event />
+      {message && <p>{message}</p>}
+
+      <Event onEventSubmit={handleEventSubmit} />
     </div>
   );
 };
