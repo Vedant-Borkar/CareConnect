@@ -35,38 +35,66 @@ const NgoProfile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full mb-8">
-        <h2 className="text-2xl font-bold text-center mb-8">NGO Profile</h2>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">NGO Name:</h3>
-          <p>{ngoData.ngoName}</p>
+    <div className="max-w-3xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+      {/* Cover Photo */}
+      <div className="relative">
+        <img
+          src="https://via.placeholder.com/728x150" // Replace with actual cover photo
+          alt="Cover"
+          className="w-full h-40 object-cover"
+        />
+        <button className="absolute top-2 right-2 px-3 py-1 bg-blue-600 text-white text-xs rounded-md">
+          Upload Cover
+        </button>
+      </div>
+
+      {/* Profile Details */}
+      <div className="p-6">
+        <div className="flex items-center space-x-4">
+          <img
+            src="https://via.placeholder.com/80" // Replace with NGO logo or relevant image
+            alt="Avatar"
+            className="w-20 h-20 rounded-full"
+          />
+          <div>
+            <h2 className="text-xl font-bold">{ngoData.ngoName}</h2>
+            <p className="text-sm text-gray-500">NGO ID: {ngoData.ngoId}</p>
+            <p className="text-sm text-gray-500">Location: {ngoData.address}</p>
+          </div>
         </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">NGO ID:</h3>
-          <p>{ngoData.ngoId}</p>
+
+        <div className="mt-4 flex space-x-2">
+          <button className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">
+            Update
+          </button>
+          <button className="px-4 py-2 text-gray-600 bg-gray-200 rounded-md hover:bg-gray-300">
+            Delete
+          </button>
         </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">NGO License:</h3>
-          <p>{ngoData.ngoLicense}</p>
-        </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Email:</h3>
-          <p>{ngoData.email}</p>
-        </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Contact No:</h3>
-          <p>{ngoData.contactNo}</p>
-        </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Address:</h3>
-          <p>{ngoData.address}</p>
+
+        {/* Additional Info */}
+        <div className="mt-8 space-y-4">
+          <div className="flex justify-between items-center">
+            <span className="text-gray-700">License</span>
+            <span className="text-gray-900 font-medium">{ngoData.ngoLicense}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-700">Email</span>
+            <span className="text-gray-900 font-medium">{ngoData.email}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-gray-700">Contact No</span>
+            <span className="text-gray-900 font-medium">{ngoData.contactNo}</span>
+          </div>
         </div>
       </div>
 
-      {message && <p>{message}</p>}
-
-      <Event onEventSubmit={handleEventSubmit} />
+      {/* Event Section */}
+      <div className="p-6 bg-gray-100">
+        <h3 className="text-lg font-semibold mb-4">Create Event</h3>
+        {message && <p className="mb-4">{message}</p>}
+        <Event onEventSubmit={handleEventSubmit} />
+      </div>
     </div>
   );
 };
