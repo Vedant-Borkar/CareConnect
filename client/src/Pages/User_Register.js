@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { auth, db } from "./FireBaseAuth"; // Importing auth1 and db1 from UserBaseAuth
-
+import { useNavigate } from "react-router-dom";
 const UserRegister = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -45,6 +46,7 @@ const UserRegister = () => {
       });
 
       console.log("User registered successfully!");
+      navigate("/home");
       // Redirect or display success message
     } catch (error) {
       console.error("Error registering user:", error.message);
