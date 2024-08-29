@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 import { db } from "./FireBaseAuth"; // Ensure this path is correct
 
 const EventsPage = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState(null); // State to store user data
 
   useEffect(() => {
+    // Fetch events from Firestore
     const fetchEvents = async () => {
       try {
         const eventsCollection = collection(db, "events");
@@ -30,7 +39,39 @@ const EventsPage = () => {
     };
 
     fetchEvents();
+
+    // Fetch user data from session storage
+    const storedUserData = sessionStorage.getItem("userData");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
   }, []);
+
+  const handleRegister = async (eventId) => {
+    if (!userData) {
+      alert("You need to be logged in to register for events.");
+      return;
+    }
+
+    try {
+      // Add event to user's registered events in Firestore
+      const userDocRef = doc(db, "users", userData.id);
+      await updateDoc(userDocRef, {
+        registeredEvents: arrayUnion(eventId),
+      });
+
+      // Add user to event's registered users in Firestore
+      const eventDocRef = doc(db, "events", eventId);
+      await updateDoc(eventDocRef, {
+        registeredUsers: arrayUnion(userData.id),
+      });
+
+      alert("Successfully registered for the event!");
+    } catch (error) {
+      console.error("Error registering for event:", error.message);
+      alert("Failed to register for the event. Please try again.");
+    }
+  };
 
   if (loading) {
     return <div>Loading events...</div>;
@@ -77,6 +118,14 @@ const EventsPage = () => {
                 <strong>Contact:</strong> {event.contactName} -{" "}
                 {event.contactEmail} - {event.contactPhone}
               </p>
+              {userData && ( // Check if user is logged in
+                <button
+                  onClick={() => handleRegister(event.id)}
+                  className="bg-green-500 text-white py-2 px-4 rounded mt-4"
+                >
+                  Register
+                </button>
+              )}
             </div>
           ))}
         </div>
