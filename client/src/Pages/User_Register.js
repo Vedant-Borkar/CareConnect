@@ -46,7 +46,7 @@ const UserRegister = () => {
       });
 
       console.log("User registered successfully!");
-      navigate("/home");
+      navigate("/user_login");
       // Redirect or display success message
     } catch (error) {
       console.error("Error registering user:", error.message);

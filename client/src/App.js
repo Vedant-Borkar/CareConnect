@@ -10,6 +10,7 @@ import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import Ngo_Register from "./Pages/Ngo_Register";
 import Ngo_Login from "./Pages/Ngo_Login";
+import UserProfile from "./Pages/UserProfile";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/ngo_register" element={<Ngo_Register />} />
         <Route path="/ngo_login" element={<Ngo_Login />} />
+        <Route path="/userprofile" element={<UserProfile/>} />
       </Routes>
     </Router>
   );

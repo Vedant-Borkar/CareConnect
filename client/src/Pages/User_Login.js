@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "./FireBaseAuth"; // Importing auth and db from FireBaseAuth
 import { useNavigate } from "react-router-dom";
+
 const UserLogin = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -38,17 +39,23 @@ const UserLogin = () => {
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
-        const userData = querySnapshot.docs[0].data();
+        let userData = {};
+        querySnapshot.forEach((doc) => {
+          userData = { ...doc.data(), id: doc.id }; // Add ID for potential updates
+        });
         console.log("User logged in successfully!", userData);
-        navigate("/home");
-        // You can store user data in your app's state or context here
+        
+        // Store user data in session storage
+        sessionStorage.setItem("userData", JSON.stringify(userData));
+        
+        // Redirect to home page
+        navigate("/userprofile");
       } else {
         console.log("User document not found in Firestore");
+        setError("User not found. Please check your credentials.");
       }
-
-      // Redirect or update UI state to reflect successful login
     } catch (error) {
-      setError(error.message);
+      setError("Invalid email or password. Please try again.");
       console.error("Error logging in:", error.message);
     }
   };
