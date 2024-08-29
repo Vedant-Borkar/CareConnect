@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { auth, db } from "./FireBaseAuth"; // Importing auth1 and db1 from UserBaseAuth
 import { useNavigate } from "react-router-dom";
+
 const UserRegister = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -55,7 +56,7 @@ const UserRegister = () => {
   };
 
   return (
-    <div className=" bg-white-100 flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-2xl font-bold text-center mb-8">User Register</h2>
         <form onSubmit={handleSubmit}>
@@ -155,10 +156,10 @@ const UserRegister = () => {
               required
             />
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex justify-center">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="mr-2 py-3 px-6 rounded-full font-semibold transition-all duration-300 transform bg-black text-white shadow-lg scale-105"
             >
               Register
             </button>

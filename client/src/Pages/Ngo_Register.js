@@ -175,14 +175,14 @@ const NgoRegister = () => {
               required
             />
           </div>
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Register
-            </button>
-          </div>
+          <div className="flex justify-center">
+  <button
+    type="submit"
+    className="mr-2 py-3 px-6 rounded-full font-semibold transition-all duration-300 transform bg-black text-white shadow-lg scale-105"
+  >
+    Register
+  </button>
+</div>
         </form>
       </div>
     </div>

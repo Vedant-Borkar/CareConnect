@@ -54,7 +54,7 @@ const UserLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div className="bg-white-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-2xl font-bold text-center mb-8">User Login</h2>
         <form onSubmit={handleSubmit}>
@@ -91,12 +91,12 @@ const UserLogin = () => {
             />
           </div>
           {error && <div className="mb-4 text-red-500 text-sm">{error}</div>}
-          <div className="flex items-center justify-between">
+          <div className="flex justify-center">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="mr-2 py-2 px-5 rounded-full font-semibold transition-all duration-300 transform bg-black text-white shadow-lg scale-105"
             >
-              Login
+              Register
             </button>
           </div>
         </form>

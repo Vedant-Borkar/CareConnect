@@ -60,7 +60,7 @@ const NgoLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div className="bg-white-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-2xl font-bold text-center mb-8">NGO Login</h2>
         <form onSubmit={handleSubmit}>
@@ -97,14 +97,14 @@ const NgoLogin = () => {
             />
           </div>
           {error && <p className="text-red-500 text-xs italic">{error}</p>}
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Login
-            </button>
-          </div>
+          <div className="flex justify-center">
+  <button
+    type="submit"
+    className="mr-2 py-2 px-5 rounded-full font-semibold transition-all duration-300 transform bg-black text-white shadow-lg scale-105"
+  >
+    Register
+  </button>
+</div>
         </form>
       </div>
     </div>
