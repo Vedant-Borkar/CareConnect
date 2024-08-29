@@ -7,6 +7,7 @@ const App = () => {
     <Router>
       <Routes>
         {/* Change NgoLogin to <NgoLogin /> */}
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<NgoLogin />} />
         {/* Other routes */}
       </Routes>
