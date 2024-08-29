@@ -44,11 +44,12 @@ const UserLogin = () => {
           userData = { ...doc.data(), id: doc.id }; // Add ID for potential updates
         });
         console.log("User logged in successfully!", userData);
-        
+
         // Store user data in session storage
         sessionStorage.setItem("userData", JSON.stringify(userData));
-        
+
         // Redirect to home page
+        // sessionStorage.clear("ngoData");
         navigate("/userprofile");
       } else {
         console.log("User document not found in Firestore");
