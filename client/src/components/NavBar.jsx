@@ -54,7 +54,7 @@ const NavBar = () => {
           className="text-2xl font-bold text-gray-800 flex items-center"
         >
           <img
-            src="/ngo.png"
+            src="/logo1.png"
             alt="CareConnect Logo"
             style={{ width: "2rem", height: "2rem", marginRight: "0.5rem" }}
             className="mr-2"
