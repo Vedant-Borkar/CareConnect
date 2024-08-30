@@ -9,6 +9,7 @@ import {
 } from "firebase/firestore";
 import { db } from "./FireBaseAuth"; // Ensure this path is correct
 
+
 const EventsPage = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import Router here
 import NavBar from "./components/NavBar";
 import Home from "./Pages/Home";
 import Event from "./components/Event";
@@ -11,7 +11,14 @@ import NgoProfile from "./Pages/Ngo_Profile";
 import SignUp from "./Pages/SignUp";
 import EventsPage from "./Pages/EventsPage";
 import Donations from "./Pages/Donations";
-import Dashboard from "./Pages/Dashboard";
+import Dashboard from "./Pages/UserDashboard";
+import UserDashboard from "./Pages/UserDashboard";
+import NgoDashboard from "./Pages/NgoDashboard";
+import UserEvents from "./Pages/UserEvents";
+import NgoInventory from "./Pages/NgoInventory";
+import NgoEvents from "./Pages/NgoEvents";
+import ChatRoom from "./Pages/ChatRoom";
+import User_Profile from "./Pages/User_Profile";
 
 const App = () => {
   return (
@@ -28,6 +35,8 @@ const App = () => {
           {/* <Route path="/ngo_register" element={<Ngo_Register />} /> */}
           <Route path="/ngo-profile" element={<NgoProfile />} />
           <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/userdashboard" element={<UserDashboard />} />
+          <Route path="/ngodashboard" element={<NgoDashboard />} />
           {/* <Route path="/userlogin" element={<UserLogin />} />
           <Route path="/userregister" element={<UserRegister />} /> */}
           <Route path="/events" element={<EventsPage />} />
@@ -36,6 +45,11 @@ const App = () => {
                     <Route path="payment" element={<StripePayment />} />
                     <Route path="success" element={<PaymentSuccess />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/userevents" element={<UserEvents />} />
+          <Route path="/ngoinventory" element={<NgoInventory />} />
+          <Route path="/ngoevents" element={<NgoEvents />} />
+          <Route path="/user-profile" element={<User_Profile />} />
+          <Route path="/chat/:roomId" element={<ChatRoom />} />
         </Routes>
       </div>
     </Router>
