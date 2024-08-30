@@ -70,6 +70,11 @@ const UserEvents = () => {
                 <p className="text-gray-600">
                   <strong>Location:</strong> {event.location}
                 </p>
+                <p>
+                  <a className="text-blue-500" href="#">
+                    Join Room
+                  </a>
+                </p>
               </li>
             ))}
           </ol>

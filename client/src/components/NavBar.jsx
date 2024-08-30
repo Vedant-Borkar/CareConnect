@@ -30,7 +30,17 @@ const NavBar = () => {
 
   const handleNavigation = (route) => {
     if (route.isExternal) {
-      navigate(route.path);
+      if (route.path === "/dashboard") {
+        // Determine which dashboard to navigate to based on the user's role
+        const ngoData = sessionStorage.getItem("ngoData");
+        if (ngoData) {
+          navigate("/ngodashboard");
+        } else {
+          navigate("/userdashboard");
+        }
+      } else {
+        navigate(route.path);
+      }
     } else {
       if (location.pathname === "/") {
         const element = document.getElementById(route.path);
@@ -42,6 +52,14 @@ const NavBar = () => {
       }
     }
     setIsMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    // Perform logout logic, e.g., clearing user data from storage
+    localStorage.setItem("isSignedIn", "false"); // or sessionStorage.setItem
+    sessionStorage.clear(); // Clear all session storage
+    setIsSignedIn(false);
+    navigate("/"); // Redirect to home or any other route after logout
   };
 
   return (
@@ -80,6 +98,14 @@ const NavBar = () => {
                 {route.name}
               </button>
             ))}
+          {isSignedIn && (
+            <button
+              onClick={handleLogout}
+              className="text-lg text-gray-700 hover:text-red-500 transition-colors duration-300 mx-2"
+            >
+              Logout
+            </button>
+          )}
         </nav>
 
         {/* Menu toggle button for smaller screens */}

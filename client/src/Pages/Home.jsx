@@ -1,13 +1,34 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Element } from "react-scroll";
 import { useLocation, useNavigate } from "react-router-dom";
-import EventsDisplay from "./EventsDisplay"; // Adjust the import path as needed
 import Footer from "../components/Footer";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../Pages/FireBaseAuth";
 
 function Home() {
   const location = useLocation();
   const navigate = useNavigate();
   const scrollRef = useRef(null);
+
+  const [events, setEvents] = useState([]); // State to hold events
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const eventsCollection = collection(db, "events");
+        const eventsSnapshot = await getDocs(eventsCollection);
+        const eventsList = eventsSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setEvents(eventsList);
+      } catch (error) {
+        console.error("Error fetching events: ", error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   useEffect(() => {
     if (location.state && location.state.scrollTo) {
@@ -107,7 +128,7 @@ function Home() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-2 text-center">
-                Want to be a vounteer?
+                Want to be a volunteer?
               </h3>
               <p className="text-center">
                 Donate or help us in conducting events for these non profit
@@ -127,7 +148,7 @@ function Home() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    d="M13 16h-1v-4h-1m4 4h-1v-4h-1m4 4h-1v-4h-1m-4 4h-1v-4h-1M6 9h.01M6 16h.01M6 21h.01M6 13h.01M6 5h.01M13 21h-1v-4h-1M20 5h-1V1h-1M6 5H1V1h1m11 4h-1V1h-1M9 16h1v1H8V6h1v8m-5 0h1v1H3V1h1v13m5 9h1v1H8v-1m4-9h1v1h-1v-1m-4 4h1v1H8v-1m4 4h1v1h-1v-1m-8 0h1v1H3v-1M6 8h-.01M6 3H1v4h5V3z"
+                    d="M13 16h-1v-4h-1m4 4h-1v-4h-1m4 4h-1v-4h-1m-4 4h-1v-4h-1M6 9h.01M6 16h.01M6 21h.01M6 13h.01M6 5h.01M13 21h-1v-4h-1M20 5h-1V1h-1M6 5H1V1h1m11 4h-1V1h-1M9 16h1v1H8V6h1v8m-5 0h1v1H3V1h1v13m5 9h1v1H8v-1m4-9h1v1h-1v-1m-4 4h1v1H8v-1m4 4h1v1H8v-1m-8 0h1v1H3v-1M6 8h-.01M6 3H1v4h5V3z"
                   />
                 </svg>
               </div>
@@ -143,80 +164,64 @@ function Home() {
         </section>
       </Element>
       {/* events section */}
-      
+
       <Element name="event-section" className="element">
-  <section
-    id="event-section"
-    className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4"
-  >
-    <div className="text-center mb-12">
-      <h2 className="text-3xl font-bold mb-4">Upcoming Events</h2>
-      <p className="text-lg max-w-2xl mx-auto">
-        Discover our upcoming events and join us in making a difference.
-      </p>
-    </div>
-    <div className="align-center justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
-      {/* Event Card 1 */}
-      <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
-        <div className="relative overflow-hidden">
-          <img
-            src="https://images.pexels.com/photos/6646880/pexels-photo-6646880.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt="Event 1"
-            className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h3 className="text-2xl font-bold mb-2">Event Title 1</h3>
-            <p className="text-lg mb-4">Event details or description here.</p>
-            <p className="text-lg mb-4">Event details or description here.</p>
+        <section
+          id="event-section"
+          className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Upcoming Events</h2>
+            <p className="text-lg max-w-2xl mx-auto">
+              Discover our upcoming events and join us in making a difference.
+            </p>
           </div>
-        </div>
-      </div>
-
-      {/* Event Card 2 */}
-      <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
-        <div className="relative overflow-hidden">
-          <img
-            src="https://images.pexels.com/photos/3407978/pexels-photo-3407978.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt="Event 2"
-            className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h3 className="text-2xl font-bold mb-2">Event Title 2</h3>
-            <p className="text-lg mb-4">Event details or description here.</p>
-            <p className="text-lg mb-4">Event details or description here.</p>
+          <div className="align-center justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
+            {events.length > 0 ? (
+              events.slice(0, 3).map(
+                (
+                  event // Only display the first three events
+                ) => (
+                  <div
+                    key={event.id}
+                    className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group"
+                  >
+                    <div className="relative overflow-hidden">
+                      <img
+                        src="https://images.pexels.com/photos/6995298/pexels-photo-6995298.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt={event.title}
+                        className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-2xl font-bold mb-2">
+                          {event.title}
+                        </h3>
+                        <p className="text-lg mb-4">{event.description}</p>
+                        <p className="text-lg mb-4">
+                          Date: {new Date(event.date).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )
+              )
+            ) : (
+              <p className="text-center col-span-3">No events available.</p>
+            )}
           </div>
-        </div>
-      </div>
 
-      {/* Event Card 3 */}
-      <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
-        <div className="relative overflow-hidden">
-          <img
-            src="https://images.pexels.com/photos/6995298/pexels-photo-6995298.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt="Event 3"
-            className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h3 className="text-2xl font-bold mb-2">Event Title 3</h3>
-            <p className="text-lg mb-4">Event details or description here.</p>
-            <p className="text-lg mb-4">Event details or description here.</p>
+          {/* Centered Learn More Button */}
+          <div className="flex justify-center items-center mt-12 mb-2 w-full">
+            <a
+              href="/events" // Update this href to the appropriate route
+              className="inline-block bg-white text-black font-semibold py-3 px-8 shadow-lg hover:bg-gray-200 transition-colors duration-300"
+            >
+              Learn More
+            </a>
           </div>
-        </div>
-      </div>
-      {/* Add more event cards here */}
-    </div>
+        </section>
+      </Element>
 
-    {/* Centered Learn More Button */}
-    <div className="flex justify-center items-center mt-12 mb-2 w-full">
-      <a
-        href="/events" // Update this href to the appropriate route
-        className="inline-block bg-white text-black font-semibold py-3 px-8 shadow-lg hover:bg-gray-200 transition-colors duration-300"
-      >
-        Learn More
-      </a>
-    </div>
-  </section>
-</Element>
       <Element name="testimonial" className="element">
         <section
           id="testimonial"

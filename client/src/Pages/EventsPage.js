@@ -9,7 +9,6 @@ import {
 } from "firebase/firestore";
 import { db } from "./FireBaseAuth"; // Ensure this path is correct
 
-
 const EventsPage = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,18 +44,21 @@ const EventsPage = () => {
     const storedUserData = sessionStorage.getItem("userData");
     if (storedUserData) {
       setUserData(JSON.parse(storedUserData));
+    } else {
+      console.log("No user data found in sessionStorage.");
     }
   }, []);
 
   const handleRegister = async (eventId) => {
-    if (!userData) {
+    const userId = userData ? userData.id : "DEFAULT_USER_ID"; // Use a default user ID for testing
+    if (!userId) {
       alert("You need to be logged in to register for events.");
       return;
     }
 
     try {
       // Add event to user's registered events in Firestore
-      const userDocRef = doc(db, "users", userData.id);
+      const userDocRef = doc(db, "users", userId);
       await updateDoc(userDocRef, {
         registeredEvents: arrayUnion(eventId),
       });
@@ -64,7 +66,7 @@ const EventsPage = () => {
       // Add user to event's registered users in Firestore
       const eventDocRef = doc(db, "events", eventId);
       await updateDoc(eventDocRef, {
-        registeredUsers: arrayUnion(userData.id),
+        registeredUsers: arrayUnion(userId),
       });
 
       alert("Successfully registered for the event!");
@@ -119,14 +121,12 @@ const EventsPage = () => {
                 <strong>Contact:</strong> {event.contactName} -{" "}
                 {event.contactEmail} - {event.contactPhone}
               </p>
-              {userData && ( // Check if user is logged in
-                <button
-                  onClick={() => handleRegister(event.id)}
-                  className="bg-green-500 text-white py-2 px-4 rounded mt-4"
-                >
-                  Register
-                </button>
-              )}
+              <button
+                onClick={() => handleRegister(event.id)}
+                className="bg-green-500 text-white py-2 px-4 rounded mt-4"
+              >
+                Register
+              </button>
             </div>
           ))}
         </div>

@@ -51,7 +51,7 @@ const NgoRegister = () => {
       });
 
       console.log("NGO registered successfully!");
-      navigate("/ngo_login");
+      navigate("/sign-in");
       // Redirect or display success message
     } catch (error) {
       console.error("Error registering NGO:", error.message);
@@ -176,13 +176,13 @@ const NgoRegister = () => {
             />
           </div>
           <div className="flex justify-center">
-  <button
-    type="submit"
-    className="mr-2 py-3 px-6 rounded-full font-semibold transition-all duration-300 transform bg-black text-white shadow-lg scale-105"
-  >
-    Register
-  </button>
-</div>
+            <button
+              type="submit"
+              className="mr-2 py-3 px-6 rounded-full font-semibold transition-all duration-300 transform bg-black text-white shadow-lg scale-105"
+            >
+              Register
+            </button>
+          </div>
         </form>
       </div>
     </div>
