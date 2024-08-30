@@ -1,24 +1,22 @@
 import React from 'react';
-// Remove this: import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Legend, LabelList } from 'recharts';
 import NgoSidebar from '../components/NgoSidebar';
 
 const NgoDashboard = () => {
-    const donationData = [
-        { name: 'Jan', orphanage: 400, oldAgeHome: 240 },
-        { name: 'Feb', orphanage: 300, oldAgeHome: 139 },
-        { name: 'Mar', orphanage: 200, oldAgeHome: 980 },
-        { name: 'Apr', orphanage: 278, oldAgeHome: 390 },
-        { name: 'May', orphanage: 189, oldAgeHome: 480 },
-      ];
-    
-      const healthData = [
-        { name: 'Jan', healthCheckups: 400, incidents: 240 },
-        { name: 'Feb', healthCheckups: 300, incidents: 139 },
-        { name: 'Mar', healthCheckups: 200, incidents: 980 },
-        { name: 'Apr', healthCheckups: 278, incidents: 390 },
-        { name: 'May', healthCheckups: 189, incidents: 480 },
-      ];
+  const donationData = [
+    { month: 'Jan', orphanage: 450, oldAgeHome: 300 },
+    { month: 'Feb', orphanage: 350, oldAgeHome: 200 },
+    { month: 'Mar', orphanage: 500, oldAgeHome: 400 },
+    { month: 'Apr', orphanage: 400, oldAgeHome: 350 },
+    { month: 'May', orphanage: 550, oldAgeHome: 450 },
+  ];
+
+  const residentAgeDistributionData = [
+    { ageGroup: 'Under 5', count: 15 },
+    { ageGroup: '5-18', count: 25 },
+    { ageGroup: '18-60', count: 50 },
+    { ageGroup: '60+', count: 30 },
+  ];
   return (
     <div className="flex">
       <NgoSidebar />
@@ -80,16 +78,15 @@ const NgoDashboard = () => {
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-4">Health Checkups & Incidents</h2>
+              <h2 className="text-xl font-semibold mb-4">Resident Age Distribution</h2>
               <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={healthData}>
+                <BarChart data={residentAgeDistributionData}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
+                  <XAxis dataKey="ageGroup" />
                   <YAxis />
                   <Tooltip />
-                  <Line type="monotone" dataKey="healthCheckups" stroke="#8884d8" />
-                  <Line type="monotone" dataKey="incidents" stroke="#82ca9d" />
-                </LineChart>
+                  <Bar dataKey="count" fill="#82ca9d" />
+                </BarChart>
               </ResponsiveContainer>
             </div>
           </div>

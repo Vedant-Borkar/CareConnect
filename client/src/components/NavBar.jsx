@@ -99,7 +99,7 @@ const NavBar = () => {
               <button
                 key={route.name}
                 onClick={() => handleNavigation(route)}
-                className="block md:inline-block text-lg text-gray-700 hover:text-blue-500 transition-colors duration-300 mx-2 my-4 md:my-0"
+                className="block md:inline-block text-lg text-gray-700 hover:text-blue-700 transition-colors duration-300 mx-2 my-4 md:my-0"
               >
                 {route.name}
               </button>
