@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import Router here
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Router here
 import NavBar from "./components/NavBar";
 import Home from "./Pages/Home";
 import Event from "./components/Event";
@@ -19,6 +19,7 @@ import NgoInventory from "./Pages/NgoInventory";
 import NgoEvents from "./Pages/NgoEvents";
 import ChatRoom from "./Pages/ChatRoom";
 import User_Profile from "./Pages/User_Profile";
+import RegisteredUsers from "./Pages/RegisteredUsers/RegisteredUsers";
 
 const App = () => {
   return (
@@ -50,6 +51,10 @@ const App = () => {
           <Route path="/ngoevents" element={<NgoEvents />} />
           <Route path="/user-profile" element={<User_Profile />} />
           <Route path="/chat/:roomId" element={<ChatRoom />} />
+          <Route
+            path="/events/:eventId/registered-users"
+            element={<RegisteredUsers />}
+          />
         </Routes>
       </div>
     </Router>
