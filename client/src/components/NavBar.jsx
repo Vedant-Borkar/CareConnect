@@ -20,7 +20,7 @@ const NavBar = () => {
 
   useEffect(() => {
     // Check if the user is signed in from localStorage or sessionStorage
-    const userLoggedIn = localStorage.getItem("isSignedIn") === "true"; // or sessionStorage.getItem
+    const userLoggedIn = localStorage.getItem("isSignedIn") === "true";
     setIsSignedIn(userLoggedIn);
   }, []);
 
@@ -54,17 +54,12 @@ const NavBar = () => {
           <img
             src="/logo1.png"
             alt="CareConnect Logo"
-            style={{ width: "2rem", height: "2rem", marginRight: "0.5rem" }}
-            className="mr-2"
+            className="w-10 h-10 mr-2"
           />
           CareConnect
         </Link>
 
-        <nav
-          className={`md:flex md:items-center ${
-            isMenuOpen ? "block" : "hidden"
-          }`}
-        >
+        <nav className={`md:flex md:items-center ${isMenuOpen ? "block" : "hidden"} md:block`}>
           {routes
             .filter((route) =>
               isSignedIn
