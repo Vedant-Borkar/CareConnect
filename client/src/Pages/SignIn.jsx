@@ -3,16 +3,16 @@ import UserLogin from "./User_Login";
 import NgoLogin from "./Ngo_Login";
 
 const LoginSwitcher = () => {
-  const [isNgoLogin, setIsNgoLogin] = useState(false); // State to toggle between User and NGO login
+  const [isNgoLogin, setIsNgoLogin] = useState(false);
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-r from-black via-gray-800 to-gray-600 flex items-center justify-center p-4"
+      className="min-h-screen flex items-center justify-center p-4"
       style={{
         backgroundImage: `url('https://images.pexels.com/photos/1049557/pexels-photo-1049557.jpeg?auto=compress&cs=tinysrgb&w=600')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
       }}
     >
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full mt-2">

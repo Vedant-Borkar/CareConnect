@@ -15,7 +15,7 @@ import { EmojiPicker } from "stream-chat-react/emojis";
 import { init, SearchIndex } from "emoji-mart";
 import data from "@emoji-mart/data";
 
-import "./layout.css";
+// import "./layout.css";
 
 const apiKey = "dz5f4d5kzrue";
 const userId = "plain-mud-4";

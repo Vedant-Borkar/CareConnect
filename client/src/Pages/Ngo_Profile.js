@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+// import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../Pages/FireBaseAuth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
@@ -12,7 +12,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { db } from "./FireBaseAuth"; // Ensure this path is correct
+// import { db } from "./FireBaseAuth"; // Ensure this path is correct
 import Event from "../components/Event";
 
 const NgoProfile = () => {
@@ -71,4 +71,4 @@ const NgoProfile = () => {
   );
 };
 
-export default UserProfile;
+export default NgoProfile;
