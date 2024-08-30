@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../Pages/FireBaseAuth";
+import FeatureSection from "../components/FeatureCard";
 
 function Home() {
   const location = useLocation();
@@ -83,7 +84,7 @@ function Home() {
           id="feature"
           className="flex items-center justify-center min-h-screen bg-white text-black px-4"
         >
-          {/* Features content */}
+          {/* Features content
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
             <div className="bg-gray-100 p-6 rounded-lg shadow-md">
               <div className="flex justify-center mb-4">
@@ -160,7 +161,8 @@ function Home() {
                 with us are 100% verified
               </p>
             </div>
-          </div>
+          </div> */}
+          <FeatureSection/>
         </section>
       </Element>
 
