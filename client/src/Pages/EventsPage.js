@@ -11,13 +11,15 @@ import { db } from "./FireBaseAuth"; // Ensure this path is correct
 
 const EventsPage = () => {
   const [events, setEvents] = useState([]);
+  const [inventoryRequests, setInventoryRequests] = useState([]); // State to store inventory requests
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null); // State to store user data
 
   useEffect(() => {
-    // Fetch events from Firestore
-    const fetchEvents = async () => {
+    // Fetch events and inventory requests from Firestore
+    const fetchData = async () => {
       try {
+        // Fetch events
         const eventsCollection = collection(db, "events");
         const eventSnapshot = await getDocs(eventsCollection);
         const eventsWithNgo = await Promise.all(
@@ -31,14 +33,30 @@ const EventsPage = () => {
           })
         );
         setEvents(eventsWithNgo);
+
+        // Fetch inventory requests
+        const inventoryRequestsCollection = collection(db, "inventoryRequests");
+        const inventoryRequestsSnapshot = await getDocs(
+          inventoryRequestsCollection
+        );
+        const inventoryRequestsList = inventoryRequestsSnapshot.docs.map(
+          (doc) => ({
+            id: doc.id,
+            ...doc.data(),
+            eventType: "Fund Raising", // Set type to "Fund Raising"
+            description: "A fund raising event that helps the needy", // Set description
+          })
+        );
+        setInventoryRequests(inventoryRequestsList);
+
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching events:", error.message);
+        console.error("Error fetching data:", error.message);
         setLoading(false);
       }
     };
 
-    fetchEvents();
+    fetchData();
 
     // Fetch user data from session storage
     const storedUserData = sessionStorage.getItem("userData");
@@ -77,14 +95,14 @@ const EventsPage = () => {
   };
 
   if (loading) {
-    return <div>Loading events...</div>;
+    return <div>Loading events and inventory requests...</div>;
   }
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <h2 className="text-2xl font-bold text-center mb-8">All Events</h2>
-      {events.length === 0 ? (
-        <p className="text-center">No events found.</p>
+      {events.length === 0 && inventoryRequests.length === 0 ? (
+        <p className="text-center">No events or inventory requests found.</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {events.map((event) => (
@@ -127,6 +145,25 @@ const EventsPage = () => {
               >
                 Register
               </button>
+            </div>
+          ))}
+
+          {/* Display inventory requests */}
+          {inventoryRequests.map((request) => (
+            <div key={request.id} className="bg-white p-4 rounded-lg shadow-md">
+              <h3 className="text-lg font-bold mb-2">Fund Raising Event</h3>
+              <p className="text-gray-600 mb-2">
+                <strong>Type:</strong> {request.eventType}
+              </p>
+              <p className="text-gray-600 mb-2">
+                <strong>Description:</strong> {request.description}
+              </p>
+              <p className="text-gray-600 mb-2">
+                <strong>Requested by:</strong> {request.ngoName}
+              </p>
+              <p className="text-gray-600 mb-2">
+                <strong>Status:</strong> {request.status}
+              </p>
             </div>
           ))}
         </div>

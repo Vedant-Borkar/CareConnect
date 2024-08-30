@@ -166,80 +166,7 @@ function Home() {
 
       {/* events section */}
 
-
       <Element name="event-section" className="element">
-        <section
-          id="event-section"
-          className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Upcoming Events</h2>
-            <p className="text-lg max-w-2xl mx-auto">
-              Discover our upcoming events and join us in making a difference.
-            </p>
-          </div>
-          <div className="align-center justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
-            {/* Event Card 1 */}
-            <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
-              <div className="relative overflow-hidden">
-                <img
-                  src="https://images.pexels.com/photos/6646880/pexels-photo-6646880.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Event 1"
-                  className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h3 className="text-2xl font-bold mb-2">Event Title 1</h3>
-                  <p className="text-lg mb-4">
-                    Event details or description here.
-                  </p>
-                  <p className="text-lg mb-4">
-                    Event details or description here.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Event Card 2 */}
-            <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
-              <div className="relative overflow-hidden">
-                <img
-                  src="https://images.pexels.com/photos/3407978/pexels-photo-3407978.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Event 2"
-                  className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h3 className="text-2xl font-bold mb-2">Event Title 2</h3>
-                  <p className="text-lg mb-4">
-                    Event details or description here.
-                  </p>
-                  <p className="text-lg mb-4">
-                    Event details or description here.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Event Card 3 */}
-            <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
-              <div className="relative overflow-hidden">
-                <img
-                  src="https://images.pexels.com/photos/6995298/pexels-photo-6995298.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Event 3"
-                  className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h3 className="text-2xl font-bold mb-2">Event Title 3</h3>
-                  <p className="text-lg mb-4">
-                    Event details or description here.
-                  </p>
-                  <p className="text-lg mb-4">
-                    Event details or description here.
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* Add more event cards here */}
-          </div>
         <section
           id="event-section"
           className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4"
@@ -283,18 +210,6 @@ function Home() {
               <p className="text-center col-span-3">No events available.</p>
             )}
           </div>
-
-          {/* Centered Learn More Button */}
-          <div className="flex justify-center items-center mt-12 mb-2 w-full">
-            <a
-              href="/events" // Update this href to the appropriate route
-              className="inline-block bg-white text-black font-semibold py-3 px-8 shadow-lg hover:bg-gray-200 transition-colors duration-300"
-            >
-              Learn More
-            </a>
-          </div>
-        </section>
-      </Element>
 
           {/* Centered Learn More Button */}
           <div className="flex justify-center items-center mt-12 mb-2 w-full">
