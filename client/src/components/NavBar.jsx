@@ -14,13 +14,12 @@ const routes = [
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSignedIn, setIsSignedIn] = useState(false); // Track user's sign-in status
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    // Check if the user is signed in from localStorage or sessionStorage
-    const userLoggedIn = localStorage.getItem("isSignedIn") === "true"; // or sessionStorage.getItem
+    const userLoggedIn = localStorage.getItem("isSignedIn") === "true";
     setIsSignedIn(userLoggedIn);
   }, []);
 
@@ -78,10 +77,17 @@ const NavBar = () => {
           CareConnect
         </Link>
 
+        {/* Menu toggle button for smaller screens */}
+        <FaBars
+          className="text-2xl text-gray-800 cursor-pointer md:hidden"
+          onClick={toggleMenu}
+        />
+
+        {/* Nav items */}
         <nav
-          className={`md:flex md:items-center ${
+          className={`${
             isMenuOpen ? "block" : "hidden"
-          }`}
+          } md:flex md:items-center absolute md:relative bg-gray-100 md:bg-transparent top-16 left-0 w-full md:w-auto md:top-auto md:left-auto md:ml-auto z-50 md:z-auto`}
         >
           {routes
             .filter((route) =>
@@ -93,7 +99,7 @@ const NavBar = () => {
               <button
                 key={route.name}
                 onClick={() => handleNavigation(route)}
-                className="text-lg text-gray-700 hover:text-blue-500 transition-colors duration-300 mx-2"
+                className="block md:inline-block text-lg text-gray-700 hover:text-blue-500 transition-colors duration-300 mx-2 my-4 md:my-0"
               >
                 {route.name}
               </button>
@@ -107,12 +113,6 @@ const NavBar = () => {
             </button>
           )}
         </nav>
-
-        {/* Menu toggle button for smaller screens */}
-        <FaBars
-          className="text-2xl text-gray-800 cursor-pointer md:hidden"
-          onClick={toggleMenu}
-        />
       </div>
     </header>
   );

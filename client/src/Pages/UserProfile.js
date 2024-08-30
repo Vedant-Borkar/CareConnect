@@ -23,7 +23,7 @@ const UserProfile = () => {
       <div className="p-6">
         <div className="flex items-center space-x-6 mb-6">
           <img
-            src={userData?.profilePhoto || "https://via.placeholder.com/80"} 
+            src={userData?.profilePhoto || "https://cdn2.iconfinder.com/data/icons/business-hr-and-recruitment/100/account_blank_face_dummy_human_mannequin_profile_user_-512.png"} 
             alt="Avatar"
             className="w-24 h-24 rounded-full border-4 border-gray-200"
           />

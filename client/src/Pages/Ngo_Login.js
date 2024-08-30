@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { auth, db } from "./FireBaseAuth"; // Ensure this path is correct
+import { auth, db } from "./FireBaseAuth";
 import { useNavigate } from "react-router-dom";
 
 const NgoLogin = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
   const { email, password } = formData;
@@ -23,65 +20,44 @@ const NgoLogin = () => {
 
   const handleSignIn = () => {
     localStorage.setItem("isSignedIn", "true");
-    navigate("/ngodashboard"); // Redirect to the NGO dashboard
-    window.location.reload(); // Reload the page to update the NavBar
+    navigate("/ngodashboard");
+    window.location.reload();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Reset error
+    setError("");
 
     try {
-      // First, try to sign in using Firebase Authentication
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Fetch additional NGO data from Firestore using the user's UID
-      const ngoQuery = query(
-        collection(db, "ngos"),
-        where("userId", "==", user.uid)
-      );
+      const ngoQuery = query(collection(db, "ngos"), where("userId", "==", user.uid));
       const ngoSnapshot = await getDocs(ngoQuery);
 
       if (!ngoSnapshot.empty) {
         let ngoData = {};
         ngoSnapshot.forEach((doc) => {
-          ngoData = { ...doc.data(), id: doc.id }; // Add ID for potential updates
+          ngoData = { ...doc.data(), id: doc.id };
         });
 
-        console.log("NGO data:", ngoData);
-
-        // Store NGO data in session storage or context
         sessionStorage.setItem("ngoData", JSON.stringify(ngoData));
-
-        console.log("User logged in successfully!");
-        
-        // Call the handleSignIn function
         handleSignIn();
       } else {
-        console.log("No NGO found with this email!");
         setError("No NGO found with this email!");
       }
     } catch (error) {
-      console.error("Error logging in:", error.message);
       setError("Invalid email or password. Please try again.");
     }
   };
 
   return (
-    <div className="bg-white-100 flex items-center justify-center">
+    <div className="bg-white flex items-center justify-center  p-6">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-2xl font-bold text-center mb-8">NGO Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
-            >
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
               Email
             </label>
             <input
@@ -94,10 +70,7 @@ const NgoLogin = () => {
             />
           </div>
           <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
               Password
             </label>
             <input
@@ -109,11 +82,11 @@ const NgoLogin = () => {
               required
             />
           </div>
-          {error && <p className="text-red-500 text-xs italic">{error}</p>}
+          {error && <p className="text-red-500 text-xs italic mb-4">{error}</p>}
           <div className="flex justify-center">
             <button
               type="submit"
-              className="mr-2 py-2 px-5 rounded-full font-semibold transition-all duration-300 transform bg-black text-white shadow-lg scale-105"
+              className="py-2 px-5 rounded-full font-semibold bg-black text-white shadow-lg transition-transform transform hover:scale-105"
             >
               Login
             </button>
