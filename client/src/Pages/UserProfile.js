@@ -1,112 +1,62 @@
-import React, { useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "./FireBaseAuth";
-import { useNavigate, Link } from "react-router-dom"; // Importing db from FireBaseAuth
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
-  const [registeredEvents, setRegisteredEvents] = useState([]); // State to store registered events
   const navigate = useNavigate();
 
   useEffect(() => {
     // Retrieve user data from session storage
     const storedUserData = sessionStorage.getItem("userData");
     if (storedUserData) {
-      const parsedUserData = JSON.parse(storedUserData);
-      setUserData(parsedUserData);
-
-      // Fetch user's registered events from Firestore
-      fetchRegisteredEvents(parsedUserData.id);
+      setUserData(JSON.parse(storedUserData));
     }
   }, []);
 
-  const fetchRegisteredEvents = async (userId) => {
-    try {
-      const userDocRef = doc(db, "users", userId);
-      const userDoc = await getDoc(userDocRef);
-
-      if (userDoc.exists()) {
-        const userDocData = userDoc.data();
-        const events = userDocData.registeredEvents || [];
-
-        // Fetch details of each registered event
-        const eventDetails = await Promise.all(
-          events.map(async (eventId) => {
-            const eventDocRef = doc(db, "events", eventId);
-            const eventDoc = await getDoc(eventDocRef);
-            return { id: eventDoc.id, ...eventDoc.data() };
-          })
-        );
-
-        setRegisteredEvents(eventDetails);
-      } else {
-        console.log("No such user document!");
-      }
-    } catch (error) {
-      console.error("Error fetching registered events:", error);
-    }
-  };
-
   if (!userData) {
-    return <p className="text-center mt-8">Loading...</p>;
+    return <p className="text-center mt-8 text-gray-700">Loading...</p>;
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full mb-8">
-        <h2 className="text-2xl font-bold text-center mb-8">User Profile</h2>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Username:</h3>
-          <p>{userData.username}</p>
+    <div className="max-w-4xl mx-auto bg-gray-50 shadow-lg rounded-lg overflow-hidden">
+      {/* Profile Details */}
+      <div className="p-6">
+        <div className="flex items-center space-x-6 mb-6">
+          <img
+            src={userData?.profilePhoto || "https://via.placeholder.com/80"} 
+            alt="Avatar"
+            className="w-24 h-24 rounded-full border-4 border-gray-200"
+          />
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900">{userData?.username || 'No Username'}</h2>
+            <p className="text-md text-gray-600">{userData?.city || 'No City'}</p>
+          </div>
         </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Email:</h3>
-          <p>{userData.email}</p>
-        </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Mobile Number:</h3>
-          <p>{userData.mobileNumber}</p>
-        </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">City:</h3>
-          <p>{userData.city}</p>
-        </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Pincode:</h3>
-          <p>{userData.pincode}</p>
-        </div>
-      </div>
 
-      {/* Registered Events Section */}
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className="text-2xl font-bold text-center mb-8">
-          Registered Events
-        </h2>
-        {registeredEvents.length === 0 ? (
-          <p>No registered events found.</p>
-        ) : (
-          <ol className="list-decimal pl-5">
-            {registeredEvents.map((event, index) => (
-              <li key={event.id} className="mb-4">
-                <h3 className="text-lg font-semibold">{event.title}</h3>
-                <p className="text-gray-600">{event.description}</p>
-                <p className="text-gray-600">
-                  <strong>Date:</strong> {event.date}
-                </p>
-                <p className="text-gray-600">
-                  <strong>Location:</strong> {event.location}
-                </p>
-                <Link
-                  to={`/chat/${event.chatRoomId}`}
-                  className="text-blue-500 underline hover:text-blue-700"
-                >
-                  Join Chat Room
-                </Link>
-              </li>
-            ))}
-          </ol>
-        )}
+        <div className="flex space-x-4 mb-6">
+          <button className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors duration-300">
+            Change
+          </button>
+          <button className="px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors duration-300">
+            Delete
+          </button>
+        </div>
+
+        {/* Info Fields */}
+        <div className="space-y-4">
+          {[
+            { label: "Mobile Number", value: userData?.mobileNumber || 'No Mobile Number' },
+            { label: "City", value: userData?.city || 'No City' },
+            { label: "Pincode", value: userData?.pincode || 'No Pincode' },
+            { label: "Email", value: userData?.email || 'No Email' },
+            { label: "Password", value: '********' },
+          ].map(({ label, value }) => (
+            <div className="flex justify-between items-center border-b border-gray-300 pb-2" key={label}>
+              <span className="text-gray-800 font-medium">{label}</span>
+              <span className="text-gray-900">{value}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
