@@ -1,7 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 const UserSidebar = () => {
+  const location = useLocation();
+  const userData = location.state?.userData; // Access user data passed through state
+
   return (
     <div className="bg-white w-64 h-screen p-6 shadow-md flex flex-col">
       <div className="mb-8">
@@ -10,7 +14,7 @@ const UserSidebar = () => {
           alt="Profile"
           className="w-20 h-20 rounded-full mx-auto"
         />
-        <h2 className="text-center mt-4 text-xl font-bold">Admin Name</h2>
+        <h2 className="text-center mt-4 text-xl font-bold">Volunteer</h2>
       </div>
       <nav className="flex flex-col space-y-4">
         <NavLink

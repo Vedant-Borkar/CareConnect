@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import {
   collection,
   addDoc,
@@ -28,32 +29,39 @@ const NgoProfile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full mb-8">
-        <h2 className="text-2xl font-bold text-center mb-8">NGO Profile</h2>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">NGO Name:</h3>
-          <p>{ngoData.ngoName}</p>
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
+      <div className="bg-white p-10 rounded-xl shadow-lg max-w-md w-full mb-8">
+        <div className="text-center mb-6">
+          <img
+            src="/path-to-ngo-logo.png" // Replace with actual logo path or a placeholder
+            alt="NGO Logo"
+            className="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-gray-300"
+          />
+          <h2 className="text-3xl font-extrabold text-gray-800 mb-2">{ngoData.ngoName}</h2>
+          <p className="text-gray-500">NGO ID: {ngoData.ngoId}</p>
         </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">NGO ID:</h3>
-          <p>{ngoData.ngoId}</p>
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-700">License:</h3>
+          <p className="text-gray-600">{ngoData.ngoLicense}</p>
         </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">NGO License:</h3>
-          <p>{ngoData.ngoLicense}</p>
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-700">Email:</h3>
+          <p className="text-gray-600">{ngoData.email}</p>
         </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Email:</h3>
-          <p>{ngoData.email}</p>
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-700">Contact No:</h3>
+          <p className="text-gray-600">{ngoData.contactNo}</p>
         </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Contact No:</h3>
-          <p>{ngoData.contactNo}</p>
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-700">Address:</h3>
+          <p className="text-gray-600">{ngoData.address}</p>
         </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Address:</h3>
-          <p>{ngoData.address}</p>
+        <div className="text-center">
+          <Link to="/ngodashboard">
+            <button className="bg-blue-600 text-white px-6 py-2 rounded-full shadow hover:bg-blue-700 transition duration-200">
+              Back to Dashboard
+            </button>
+          </Link>
         </div>
       </div>
     </div>

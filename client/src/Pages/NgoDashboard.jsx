@@ -1,7 +1,5 @@
 import React from 'react';
 // Remove this: import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Sidebar from '../components/NgoSidebar';
-import Event from '../components/Event';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import NgoSidebar from '../components/NgoSidebar';
 
