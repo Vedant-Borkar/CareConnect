@@ -10,7 +10,7 @@ import UserProfile from "./Pages/UserProfile";
 import NgoProfile from "./Pages/Ngo_Profile";
 import SignUp from "./Pages/SignUp";
 import EventsPage from "./Pages/EventsPage";
-import Donations from "./Pages/Donations";
+import DonationForm from "./Pages/Donations";
 import Dashboard from "./Pages/UserDashboard";
 import UserDashboard from "./Pages/UserDashboard";
 import NgoDashboard from "./Pages/NgoDashboard";
@@ -20,6 +20,7 @@ import NgoEvents from "./Pages/NgoEvents";
 import ChatRoom from "./Pages/ChatRoom";
 import User_Profile from "./Pages/User_Profile";
 import RegisteredUsers from "./Pages/RegisteredUsers/RegisteredUsers";
+//import EventDonation from "./components/EventDonation";
 
 const App = () => {
   return (
@@ -41,8 +42,8 @@ const App = () => {
           {/* <Route path="/userlogin" element={<UserLogin />} />
           <Route path="/userregister" element={<UserRegister />} /> */}
           <Route path="/events" element={<EventsPage />} />
-          {/* <Route path="/donations" element={<Donations/>} />
-          <Route path="/course" element={<Course />} />
+          <Route path="/donate" element={<DonationForm/>} />
+          {/* <Route path="/course" element={<Course />} />
                     <Route path="payment" element={<StripePayment />} />
                     <Route path="success" element={<PaymentSuccess />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />

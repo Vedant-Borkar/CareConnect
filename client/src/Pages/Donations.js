@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "./FireBaseAuth"; // Ensure you have the correct path to your Firebase config
+
+const stripePromise = loadStripe("your-publishable-key-here");
 
 const DonationForm = () => {
   const stripe = useStripe();
@@ -11,25 +14,21 @@ const DonationForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     if (!stripe || !elements) {
       return;
     }
-  
+
     const cardElement = elements.getElement(CardElement);
-  
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: cardElement,
     });
-  
+
     if (error) {
-      if (error.type === 'card_error' && error.code === 'card_declined' && error.decline_code === 'card_not_supported') {
-        setMessage("Your card is not supported. Please try another payment method.");
-      } else {
-        console.error(error);
-        setMessage(error.message);
-      }
+      console.error(error);
+      setMessage(error.message);
     } else {
       try {
         // Add donation details to Firestore
@@ -38,7 +37,7 @@ const DonationForm = () => {
           paymentMethodId: paymentMethod.id,
           created: new Date(),
         });
-  
+
         setMessage("Donation successful!");
       } catch (err) {
         console.error("Error adding donation to Firestore:", err);
@@ -47,11 +46,17 @@ const DonationForm = () => {
     }
   };
 
+  const handleDonate = ()=>{
+    alert(`Thank you for your donation of ${amount}!`);
+
+    setAmount(0); 
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
-      <h3 className="text-xl font-semibold text-center mb-4 text-gray-800">Make a Donation</h3>
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold text-center mb-8">Make a Donation</h2>
       <div className="mb-4">
-        <label htmlFor="amount" className="block text-gray-700 text-sm font-medium mb-2">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="amount">
           Amount:
         </label>
         <input
@@ -59,29 +64,38 @@ const DonationForm = () => {
           id="amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          className="block w-full px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           required
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="card-element" className="block text-gray-700 text-sm font-medium mb-2">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="card-element">
           Card Details:
         </label>
         <CardElement
           id="card-element"
-          className="p-3 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </div>
       <button
         type="submit"
         disabled={!stripe}
-        className="w-full px-4 py-2 font-semibold text-white bg-blue-600 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+        onClick={handleDonate}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
         Donate
       </button>
-      {message && <p className="mt-4 text-center text-red-600">{message}</p>}
+      {/* {message && <p className="mt-4 text-center text-red-500">{message}</p>} */}
     </form>
   );
 };
 
-export default DonationForm;
+const Donation = () => {
+  return (
+    <Elements stripe={stripePromise}>
+      <DonationForm />
+    </Elements>
+  );
+};
+
+export default Donation;
