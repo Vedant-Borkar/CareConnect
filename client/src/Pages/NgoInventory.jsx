@@ -13,22 +13,29 @@ import { db } from "./FireBaseAuth"; // Ensure this path is correct
 const NgoInventory = () => {
   const [ngoData, setNgoData] = useState(null);
   const [message, setMessage] = useState("");
-  const [events, setEvents] = useState([]);
   const [inventory, setInventory] = useState([]);
   const [newItem, setNewItem] = useState({ name: "", quantity: "" });
-  const [showInventory, setShowInventory] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Retrieve NGO data from session storage
-    const storedNgoData = sessionStorage.getItem("ngoData");
-    if (storedNgoData) {
-      const parsedNgoData = JSON.parse(storedNgoData);
-      setNgoData(parsedNgoData);
+    const fetchData = async () => {
+      try {
+        // Retrieve NGO data from session storage
+        const storedNgoData = sessionStorage.getItem("ngoData");
+        if (storedNgoData) {
+          const parsedNgoData = JSON.parse(storedNgoData);
+          setNgoData(parsedNgoData);
+          await fetchInventory();
+        }
+      } catch (error) {
+        console.error("Error loading NGO data:", error);
+        setMessage("Failed to load NGO data. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      // Fetch events added by this NGO
-      fetchNgoEvents(parsedNgoData.id);
-    }
-    fetchInventory();
+    fetchData();
   }, []);
 
   const fetchInventory = async () => {
@@ -45,23 +52,6 @@ const NgoInventory = () => {
     }
   };
 
-  const fetchNgoEvents = async (ngoId) => {
-    try {
-      const eventsQuery = query(
-        collection(db, "events"),
-        where("ngoId", "==", ngoId)
-      );
-      const eventsSnapshot = await getDocs(eventsQuery);
-      const eventsList = eventsSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setEvents(eventsList);
-    } catch (error) {
-      console.error("Error fetching NGO events:", error.message);
-    }
-  };
-
   const handleAddInventory = async () => {
     try {
       await addDoc(collection(db, "inventory"), {
@@ -70,7 +60,7 @@ const NgoInventory = () => {
       });
       setMessage("Inventory item added successfully!");
       setNewItem({ name: "", quantity: "" });
-      fetchInventory();
+      await fetchInventory(); // Refresh inventory list
     } catch (error) {
       console.error("Error adding inventory item:", error);
       setMessage("Failed to add inventory item. Please try again.");
@@ -81,7 +71,7 @@ const NgoInventory = () => {
     try {
       await deleteDoc(doc(db, "inventory", itemId));
       setMessage("Inventory item deleted successfully!");
-      fetchInventory();
+      await fetchInventory(); // Refresh inventory list
     } catch (error) {
       console.error("Error deleting inventory item:", error);
       setMessage("Failed to delete inventory item. Please try again.");
@@ -103,75 +93,75 @@ const NgoInventory = () => {
     }
   };
 
-  if (!ngoData) {
-    return <p>Loading...</p>;
+  if (loading) {
+    return <p className="text-center text-gray-600">Loading...</p>;
   }
-  return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <button
-        onClick={() => setShowInventory(!showInventory)}
-        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
-      >
-        {showInventory ? "Hide Inventory" : "View Inventory"}
-      </button>
 
-      {showInventory && (
-        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full mb-8">
-          <h3 className="text-xl font-bold mb-4">Inventory Management</h3>
-          <div className="mb-4">
+  if (!ngoData) {
+    return <p className="text-center text-red-500">No NGO data found. Please log in again.</p>;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-6">
+      <div className="bg-white p-8 rounded-lg shadow-md border border-gray-300 max-w-3xl w-full">
+        <h3 className="text-2xl font-bold mb-6 text-black">Inventory Management</h3>
+        <div className="mb-6">
+          <h4 className="text-lg font-semibold mb-2 text-black">Add New Inventory Item</h4>
+          <div className="flex flex-col gap-4 mb-6">
             <input
               type="text"
               placeholder="Item Name"
               value={newItem.name}
               onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
-              className="w-full p-2 border rounded mb-2"
+              className="w-full p-3 border border-gray-300 bg-gray-100 rounded shadow-sm"
             />
             <input
               type="number"
               placeholder="Quantity"
               value={newItem.quantity}
-              onChange={(e) =>
-                setNewItem({ ...newItem, quantity: e.target.value })
-              }
-              className="w-full p-2 border rounded mb-2"
+              onChange={(e) => setNewItem({ ...newItem, quantity: e.target.value })}
+              className="w-full p-3 border border-gray-300 bg-gray-100 rounded shadow-sm"
             />
             <button
               onClick={handleAddInventory}
-              className="w-full p-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
+              className="w-full p-3 bg-black text-white rounded hover:bg-gray-800 transition duration-300"
             >
               Add Item
             </button>
           </div>
-          <ul>
-            {inventory.map((item) => (
-              <li
-                key={item.id}
-                className="flex justify-between items-center mb-2"
-              >
-                <span>
-                  {item.name} - {item.quantity}
-                </span>
-                <div>
-                  <button
-                    onClick={() => handleDeleteInventory(item.id)}
-                    className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300 mr-2"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onClick={() => handleRequestInventory(item.name)}
-                    className="px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition duration-300"
-                  >
-                    Request
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
         </div>
-      )}
-
-      {message && <p className="text-center text-green-600 mb-4">{message}</p>}
+        <div>
+          <h4 className="text-lg font-semibold mb-2 text-black">Current Inventory</h4>
+          {inventory.length === 0 ? (
+            <p className="text-center text-gray-500">No inventory items available.</p>
+          ) : (
+            <ul className="list-disc pl-5 space-y-4">
+              {inventory.map((item) => (
+                <li key={item.id} className="flex justify-between items-center p-4 border border-gray-300 bg-gray-100 rounded shadow-sm">
+                  <span className="text-black">
+                    {item.name} - {item.quantity}
+                  </span>
+                  <div>
+                    <button
+                      onClick={() => handleDeleteInventory(item.id)}
+                      className="px-4 py-2 bg-black text-white rounded hover:bg-gray-800 transition duration-300 mr-2"
+                    >
+                      Delete
+                    </button>
+                    <button
+                      onClick={() => handleRequestInventory(item.name)}
+                      className="px-4 py-2 border border-black text-black rounded hover:bg-gray-200 transition duration-300"
+                    >
+                      Request
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+      {message && <p className="text-center text-green-500 mt-4">{message}</p>}
     </div>
   );
 };

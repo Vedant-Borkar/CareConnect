@@ -142,81 +142,95 @@ function Home() {
           </div>
         </section>
       </Element>
+
       {/* events section */}
-      
+
       <Element name="event-section" className="element">
-  <section
-    id="event-section"
-    className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4"
-  >
-    <div className="text-center mb-12">
-      <h2 className="text-3xl font-bold mb-4">Upcoming Events</h2>
-      <p className="text-lg max-w-2xl mx-auto">
-        Discover our upcoming events and join us in making a difference.
-      </p>
-    </div>
-    <div className="align-center justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
-      {/* Event Card 1 */}
-      <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
-        <div className="relative overflow-hidden">
-          <img
-            src="https://images.pexels.com/photos/6646880/pexels-photo-6646880.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt="Event 1"
-            className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h3 className="text-2xl font-bold mb-2">Event Title 1</h3>
-            <p className="text-lg mb-4">Event details or description here.</p>
-            <p className="text-lg mb-4">Event details or description here.</p>
+        <section
+          id="event-section"
+          className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Upcoming Events</h2>
+            <p className="text-lg max-w-2xl mx-auto">
+              Discover our upcoming events and join us in making a difference.
+            </p>
           </div>
-        </div>
-      </div>
+          <div className="align-center justify-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
+            {/* Event Card 1 */}
+            <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="https://images.pexels.com/photos/6646880/pexels-photo-6646880.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Event 1"
+                  className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <h3 className="text-2xl font-bold mb-2">Event Title 1</h3>
+                  <p className="text-lg mb-4">
+                    Event details or description here.
+                  </p>
+                  <p className="text-lg mb-4">
+                    Event details or description here.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-      {/* Event Card 2 */}
-      <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
-        <div className="relative overflow-hidden">
-          <img
-            src="https://images.pexels.com/photos/3407978/pexels-photo-3407978.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt="Event 2"
-            className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h3 className="text-2xl font-bold mb-2">Event Title 2</h3>
-            <p className="text-lg mb-4">Event details or description here.</p>
-            <p className="text-lg mb-4">Event details or description here.</p>
+            {/* Event Card 2 */}
+            <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="https://images.pexels.com/photos/3407978/pexels-photo-3407978.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Event 2"
+                  className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <h3 className="text-2xl font-bold mb-2">Event Title 2</h3>
+                  <p className="text-lg mb-4">
+                    Event details or description here.
+                  </p>
+                  <p className="text-lg mb-4">
+                    Event details or description here.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Event Card 3 */}
+            <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
+              <div className="relative overflow-hidden">
+                <img
+                  src="https://images.pexels.com/photos/6995298/pexels-photo-6995298.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Event 3"
+                  className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <h3 className="text-2xl font-bold mb-2">Event Title 3</h3>
+                  <p className="text-lg mb-4">
+                    Event details or description here.
+                  </p>
+                  <p className="text-lg mb-4">
+                    Event details or description here.
+                  </p>
+                </div>
+              </div>
+            </div>
+            {/* Add more event cards here */}
           </div>
-        </div>
-      </div>
 
-      {/* Event Card 3 */}
-      <div className="relative bg-white p-6 rounded-lg shadow-lg overflow-hidden group">
-        <div className="relative overflow-hidden">
-          <img
-            src="https://images.pexels.com/photos/6995298/pexels-photo-6995298.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt="Event 3"
-            className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform group-hover:translate-y-full"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h3 className="text-2xl font-bold mb-2">Event Title 3</h3>
-            <p className="text-lg mb-4">Event details or description here.</p>
-            <p className="text-lg mb-4">Event details or description here.</p>
+          {/* Centered Learn More Button */}
+          <div className="flex justify-center items-center mt-12 mb-2 w-full">
+            <a
+              href="/events" // Update this href to the appropriate route
+              className="inline-block bg-white text-black font-semibold py-3 px-8 shadow-lg hover:bg-gray-200 transition-colors duration-300"
+            >
+              Learn More
+            </a>
           </div>
-        </div>
-      </div>
-      {/* Add more event cards here */}
-    </div>
+        </section>
+      </Element>
 
-    {/* Centered Learn More Button */}
-    <div className="flex justify-center items-center mt-12 mb-2 w-full">
-      <a
-        href="/events" // Update this href to the appropriate route
-        className="inline-block bg-white text-black font-semibold py-3 px-8 shadow-lg hover:bg-gray-200 transition-colors duration-300"
-      >
-        Learn More
-      </a>
-    </div>
-  </section>
-</Element>
       <Element name="testimonial" className="element">
         <section
           id="testimonial"
@@ -243,7 +257,23 @@ function Home() {
             >
               <div className="bg-white p-6 rounded-lg shadow-lg min-w-[250px] flex flex-col items-center">
                 <img
-                  src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8qefgZF-DmdD3uJFFx9anoM9LxchS0oNUfQ&s"
+                  alt="Client 1"
+                  className="w-24 h-24 rounded-full mb-4 object-cover"
+                />
+                <p className="mb-4 text-center">
+                  "Superb service! The team's professionalism and attention to
+                  detail delivered results that went well beyond our
+                  expectations."
+                </p>
+                <p className="font-semibold text-center">Pooja Makhijani</p>
+                <p className="text-gray-600 text-center">
+                  UI UX Designer, Info Company
+                </p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-lg min-w-[250px] flex flex-col items-center">
+                <img
+                  src="https://www.freeiconspng.com/thumbs/profile-icon-png/-avatar-people-person-profile-user-women-icon--icon-search-engine-23.png"
                   alt="Client 1"
                   className="w-24 h-24 rounded-full mb-4 object-cover"
                 />
@@ -251,44 +281,40 @@ function Home() {
                   "Amazing service! The team was highly professional and
                   delivered beyond expectations."
                 </p>
-                <p className="font-semibold text-center">John Doe</p>
+                <p className="font-semibold text-center">Siddhi Mehta</p>
                 <p className="text-gray-600 text-center">
-                  CEO, Example Company
+                  Founder, Cardifyme Company
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg min-w-[250px] flex flex-col items-center">
                 <img
-                  src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIH3cVN9nVOwezMJZgjRo0YhASylFMo1nJpw&s"
                   alt="Client 1"
                   className="w-24 h-24 rounded-full mb-4 object-cover"
                 />
                 <p className="mb-4 text-center">
-                  "Amazing service! The team was highly professional and
-                  delivered beyond expectations."
+                  "Exceptional service! The team went above and beyond to exceed
+                  all expectations with their professionalism and expertise."
                 </p>
-                <p className="font-semibold text-center">John Doe</p>
-                <p className="text-gray-600 text-center">
-                  CEO, Example Company
-                </p>
+                <p className="font-semibold text-center">Nidhi Mhatre</p>
+                <p className="text-gray-600 text-center">CEO, JSX Company</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg min-w-[250px] flex flex-col items-center">
                 <img
-                  src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Client 1"
+                  src="https://c0.klipartz.com/pngpicture/165/652/gratis-png-empresario-iconos-de-computadora-avatar-avatar.png"
+                  alt="Client 2"
                   className="w-24 h-24 rounded-full mb-4 object-cover"
                 />
                 <p className="mb-4 text-center">
-                  "Amazing service! The team was highly professional and
-                  delivered beyond expectations."
+                  "Outstanding experience! The team was incredibly professional
+                  and delivered results that were beyond what we had hoped for."
                 </p>
-                <p className="font-semibold text-center">John Doe</p>
-                <p className="text-gray-600 text-center">
-                  CEO, Example Company
-                </p>
+                <p className="font-semibold text-center">Sagar Manchakatla</p>
+                <p className="text-gray-600 text-center">CEO, TechnoInfo</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg min-w-[250px] flex flex-col items-center">
                 <img
-                  src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQflAFaxWTnSsKTbK_CyubHQoTVVHLMBelz9A&s"
                   alt="Client 2"
                   className="w-24 h-24 rounded-full mb-4 object-cover"
                 />
@@ -296,39 +322,25 @@ function Home() {
                   "Highly recommended! The results were outstanding and the
                   support was exceptional."
                 </p>
-                <p className="font-semibold text-center">Jane Smith</p>
+                <p className="font-semibold text-center">Smith Patil</p>
                 <p className="text-gray-600 text-center">
-                  Marketing Director, Another Company
+                  Managing Director, Pledge Company
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg min-w-[250px] flex flex-col items-center">
                 <img
-                  src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="https://cdn-icons-png.freepik.com/512/219/219981.png"
                   alt="Client 2"
                   className="w-24 h-24 rounded-full mb-4 object-cover"
                 />
                 <p className="mb-4 text-center">
-                  "Highly recommended! The results were outstanding and the
-                  support was exceptional."
+                  "Fantastic service! The team's high level of professionalism
+                  and commitment led to outcomes that exceeded our
+                  expectations."
                 </p>
-                <p className="font-semibold text-center">Jane Smith</p>
+                <p className="font-semibold text-center">Vedant Borkar</p>
                 <p className="text-gray-600 text-center">
-                  Marketing Director, Another Company
-                </p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg min-w-[250px] flex flex-col items-center">
-                <img
-                  src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Client 2"
-                  className="w-24 h-24 rounded-full mb-4 object-cover"
-                />
-                <p className="mb-4 text-center">
-                  "Highly recommended! The results were outstanding and the
-                  support was exceptional."
-                </p>
-                <p className="font-semibold text-center">Jane Smith</p>
-                <p className="text-gray-600 text-center">
-                  Marketing Director, Another Company
+                  Marketing Director, CareConnect Company
                 </p>
               </div>
               {/* Add more testimonials here */}

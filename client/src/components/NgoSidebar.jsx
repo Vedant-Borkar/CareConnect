@@ -20,7 +20,7 @@ const NgoSidebar = () => {
     <div className="bg-white w-64 h-screen p-6 shadow-md flex flex-col">
       <div className="mb-8">
         <img
-          src="https://via.placeholder.com/150"
+          src="https://cdn2.iconfinder.com/data/icons/business-hr-and-recruitment/100/account_blank_face_dummy_human_mannequin_profile_user_-512.png"
           alt="Profile"
           className="w-20 h-20 rounded-full mx-auto"
         />
