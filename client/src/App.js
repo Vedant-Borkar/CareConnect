@@ -19,6 +19,7 @@ import NgoInventory from "./Pages/NgoInventory";
 import NgoEvents from "./Pages/NgoEvents";
 import ChatRoom from "./Pages/ChatRoom";
 import User_Profile from "./Pages/User_Profile";
+import EventDonation from "./components/EventDonation";
 
 const App = () => {
   return (
