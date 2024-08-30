@@ -8,8 +8,11 @@ import {
   arrayUnion,
 } from "firebase/firestore";
 import { db } from "./FireBaseAuth"; // Ensure this path is correct
+import { useNavigate } from "react-router-dom";
 
 const EventsPage = () => {
+  const navigate = useNavigate();
+
   const [events, setEvents] = useState([]);
   const [inventoryRequests, setInventoryRequests] = useState([]); // State to store inventory requests
   const [loading, setLoading] = useState(true);
@@ -94,6 +97,10 @@ const EventsPage = () => {
     }
   };
 
+  const handleDonate = ()=>{
+    navigate("/donate");
+  }
+
   if (loading) {
     return <div>Loading events and inventory requests...</div>;
   }
@@ -164,6 +171,7 @@ const EventsPage = () => {
               <p className="text-gray-600 mb-2">
                 <strong>Status:</strong> {request.status}
               </p>
+              <button className="bg-green-500 text-white py-2 px-4 rounded mt-4" onClick={handleDonate}>Donate</button>
             </div>
           ))}
         </div>
