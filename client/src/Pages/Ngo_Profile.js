@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../Pages/FireBaseAuth";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import {
   collection,
@@ -68,4 +71,4 @@ const NgoProfile = () => {
   );
 };
 
-export default NgoProfile;
+export default UserProfile;

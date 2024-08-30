@@ -17,6 +17,8 @@ import NgoDashboard from "./Pages/NgoDashboard";
 import UserEvents from "./Pages/UserEvents";
 import NgoInventory from "./Pages/NgoInventory";
 import NgoEvents from "./Pages/NgoEvents";
+import ChatRoom from "./Pages/ChatRoom";
+import User_Profile from "./Pages/User_Profile";
 
 const App = () => {
   return (
@@ -46,6 +48,8 @@ const App = () => {
           <Route path="/userevents" element={<UserEvents />} />
           <Route path="/ngoinventory" element={<NgoInventory />} />
           <Route path="/ngoevents" element={<NgoEvents />} />
+          <Route path="/user-profile" element={<User_Profile />} />
+          <Route path="/chat/:roomId" element={<ChatRoom />} />
         </Routes>
       </div>
     </Router>
